@@ -50,6 +50,7 @@ function a11yProps(index) {
 function LinkTab(props) {
   return (
     <Tab
+      style={{fontSize: 20}}
       component="a"
       onClick={(event) => {
         event.preventDefault();
@@ -71,14 +72,23 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     flexWrap: 'wrap',
+    justifyContent: "space-around",
+    alignitems: 'space-between',
+
   },
   title: {
     flexGrow: 1,
+    fontSize: 30,
+    color: "#262626"
   },
   tabs: {
-    flexGrow: 1,
-    align: "center"
-  }
+    flexGrow: 1.5,
+    align: "center",
+    fontSize: 20,
+  },
+  font: {
+    fontSize: 15,
+  },
 
 }));
 
@@ -104,26 +114,25 @@ export default function NavTabs() {
   };
 
   return (
-    <div>
+    <div className={classes.root}>
       <AppBar position="static" color="#D5E7F2" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <Typography variant="h5" color="#262626" noWrap className={classes.title}>
+          <Typography noWrap className={classes.title}>
             Beyond Handong
           </Typography>
        
           <Tabs
             value={value}
-            TabIndicatorProps={{style: {background:'#5A98BF'}}}
+            TabIndicatorProps={{style: {background:'#5A98BF', height:"3px",}}}
             onChange={handleChange}
             aria-label="nav tabs"
             className={classes.tabs}>
             <LinkTab label="정보 게시판" href="/drafts" {...a11yProps(0)} />
             <LinkTab label="자유 게시판" href="/trash" {...a11yProps(1)} />
-            {/* <LinkTab label="Page Three" href="/spam" {...a11yProps(2)} /> */}
           </Tabs>
 
 
-          <Typography>
+          <Typography className={classes.font}>
                 남진우
           </Typography>
           {auth && (
@@ -135,6 +144,7 @@ export default function NavTabs() {
                 onClick={handleMenu}
                 color="inherit"
                 edge = "end"
+
               >
                 <AccountCircle />
               </IconButton>
