@@ -12,8 +12,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from "@material-ui/icons/AccountCircle"
 
+import MainTitle from './MainTitle'
 
 
+// page 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -47,8 +49,11 @@ function a11yProps(index) {
   };
 }
 
+// tab
 function LinkTab(props) {
   return (
+    <Box
+      marginRight={5}>
     <Tab
       style={{fontSize: 20}}
       component="a"
@@ -57,9 +62,11 @@ function LinkTab(props) {
       }}
       {...props}
     />
+    </Box>
   );
 }
 
+// css
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -72,8 +79,10 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     flexWrap: 'wrap',
-    justifyContent: "space-around",
     alignitems: 'space-between',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
 
   },
   title: {
@@ -82,6 +91,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#262626"
   },
   tabs: {
+    justifyContent: 'center',
     flexGrow: 1.5,
     align: "center",
     fontSize: 20,
@@ -122,12 +132,17 @@ export default function NavTabs() {
           </Typography>
        
           <Tabs
+            component="main"
             value={value}
             TabIndicatorProps={{style: {background:'#5A98BF', height:"3px",}}}
             onChange={handleChange}
             aria-label="nav tabs"
             className={classes.tabs}>
-            <LinkTab label="정보 게시판" href="/drafts" {...a11yProps(0)} />
+            <LinkTab label="정보 게시판" href="/drafts" {...a11yProps(0)} /> 
+            {/* 여기서 정보 받아오는 api함수를 쓰면 될 것 같다 
+            참고 : https://codesandbox.io/s/api-integrate-c3rli?fontsize=14&file=/src/useAsync.js
+            https://github.com/reactions2code/react-project-api
+            */}
             <LinkTab label="자유 게시판" href="/trash" {...a11yProps(1)} />
           </Tabs>
 
@@ -173,10 +188,11 @@ export default function NavTabs() {
       </AppBar>
       
       <TabPanel value={value} index={0}>
-        Page One
+        <MainTitle title="정보게시판"></MainTitle>
       </TabPanel>
+
       <TabPanel value={value} index={1}>
-        Page Two
+        <MainTitle title="자유게시판"></MainTitle>
       </TabPanel>
     </div>
   );
