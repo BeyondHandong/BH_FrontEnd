@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import TopBar from './components/TopBar'
 import MainCheck from './components/MainCheck'
+import Search from './components/Search'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +27,7 @@ export default function App() {
       <TopBar></TopBar>
       {/* <MainTitle className={classes.mainTitle}></MainTitle> */}
       <MainCheck className={classes.mainCheck}></MainCheck>
+      <Search></Search>
     </div>
   );
 }
