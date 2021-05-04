@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     marginBottom: theme.spacing(2),
     marginTop: theme.spacing(2),
-    width: '100%',
   },
   check: {
     marginRight: theme.spacing(20),

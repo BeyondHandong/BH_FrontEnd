@@ -29,7 +29,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={3}>
-          <Typography>{children}</Typography>
+          <Typography component="span">{children}</Typography>
         </Box>
       )}
     </div>
@@ -70,20 +70,16 @@ function LinkTab(props) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
     color: '#262626',
   },
   appBar: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
+    borderBottom: `1px solid #262626`,
     backgroundColor: '#D5E7F2',
   },
   toolbar: {
     flexWrap: 'wrap',
     alignitems: 'space-between',
-    display: 'flex',
-    alignItems: 'center',
     justifyContent: 'center',
-
   },
   title: {
     flexGrow: 1,
@@ -125,8 +121,8 @@ export default function NavTabs() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="#D5E7F2" elevation={0} className={classes.appBar}>
-        <Toolbar className={classes.toolbar}>
+      <AppBar position="static" color="inherit" elevation={0} className={classes.appBar}>
+        <Toolbar component="span" className={classes.toolbar}>
           <Typography noWrap className={classes.title}>
             Beyond Handong
           </Typography>
@@ -147,7 +143,7 @@ export default function NavTabs() {
           </Tabs>
 
 
-          <Typography className={classes.font}>
+          <Typography component="span" className={classes.font}>
                 남진우
           </Typography>
           {auth && (
@@ -159,7 +155,6 @@ export default function NavTabs() {
                 onClick={handleMenu}
                 color="inherit"
                 edge = "end"
-
               >
                 <AccountCircle />
               </IconButton>
