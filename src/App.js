@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TopBar from './components/TopBar'
 import MainCheck from './components/MainCheck'
 import Search from './components/Search'
+import Table from './components/Table'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +29,7 @@ export default function App() {
       {/* <MainTitle className={classes.mainTitle}></MainTitle> */}
       <MainCheck className={classes.mainCheck}></MainCheck>
       <Search></Search>
+      <Table></Table>
     </div>
   );
 }
