@@ -4,6 +4,7 @@ import TopBar from './TopBar'
 import MainCheck from './MainCheck'
 import Search from './Search'
 import Table from './Table'
+import { Provider } from '../Context';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,12 +25,12 @@ export default function Home() {
   const classes = useStyles();
 
   return (
-    <div >
+    <Provider>
       <TopBar></TopBar>
       {/* <MainTitle className={classes.mainTitle}></MainTitle> */}
       <MainCheck className={classes.mainCheck}></MainCheck>
       <Search></Search>
       <Table></Table>
-    </div>
+    </Provider>
   );
 }
