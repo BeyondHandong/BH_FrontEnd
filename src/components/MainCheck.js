@@ -8,6 +8,8 @@ import CircleCheckedFilled from "@material-ui/icons/CheckCircle";
 import CircleUnchecked from "@material-ui/icons/RadioButtonUnchecked";
 import Container from "@material-ui/core/Container";
 
+import { useCheckState, useCheckDispatch } from '../Context';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -15,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
     marginTop: theme.spacing(2),
   },
-  check: {
+  checkStyle: {
     marginRight: theme.spacing(20),
   }
 }));
@@ -38,69 +40,44 @@ const BlueCheckbox = withStyles({
   />
 ));
 
+
 export default function CheckboxLabels() {
-  const [state, setState] = React.useState({
-    isExchanged: true,
-    isGraduated: true,
-    isJob: true,
-    isWarhol: true
-  });
-
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
-
   const classes = useStyles();
 
+  const checks = useCheckState();
+  
   return (
     <React.Fragment>
       <Container spacing={4} component="main" className={classes.root}>
         <FormGroup row component="main">
-          <FormControlLabel
-            className={classes.check}
+          
+        {checks.map(check => (
+            <FormControlLabel
+            key={check.id}
+            className={classes.checkStyle}
             control={
-              <BlueCheckbox
-                checked={state.isExchanged}
-                onChange={handleChange}
-                name="isExchanged"
+              <CheckBoxItem
+              id={check.id}
+              isCheck={check.isCheck}
+            
               />
             }
-            label="교환학생"
+            label={check.text}
           />
-          <FormControlLabel
-            className={classes.check}
-            control={
-              <BlueCheckbox
-                checked={state.isGraduated}
-                onChange={handleChange}
-                name="isGraduated"
-              />
-            }
-            label="해외대학원"
-          />
-          <FormControlLabel
-            className={classes.check}
-            control={
-              <BlueCheckbox
-                checked={state.isJob}
-                onChange={handleChange}
-                name="isJob"
-              />
-            }
-            label="해외취업"
-          />
-          <FormControlLabel
-            control={
-              <BlueCheckbox
-                checked={state.isWarhol}
-                onChange={handleChange}
-                name="isWarhol"
-              />
-            }
-            label="워킹홀리데이"
-          />
+        ))}
         </FormGroup>
       </Container>
     </React.Fragment>
+  );
+}
+
+function CheckBoxItem({ id, isCheck }) {
+  const dispatch = useCheckDispatch();
+  const onToggle = () => dispatch({ type: 'TOGGLE', id });
+  return (
+    <BlueCheckbox
+      checked={isCheck}
+      onChange={onToggle}
+    />
   );
 }
