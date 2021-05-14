@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(5),
     marginLeft: "auto",
     marginRight: "auto",
-    border: '2px solid rgba(0, 0, 0, 0.05)',
+    border: '1px solid rgba(0, 0, 0, 0.15)',
   },
 }));
 
