@@ -5,19 +5,6 @@ import MainCheck from './MainCheck'
 import Search from './Search'
 import Table from './Table'
 import { Provider } from '../Context';
-import { Parallax } from 'react-parallax';
-
-const Container = () => (
-  <Parallax blur={0} bgImage="https://static.wixstatic.com/media/11062b_7d8badf22ed9415e8c2974ee130d4943~mv2.jpg" bgImageAlt="santorini" strength={200}>
-      <Provider>
-      <TopBar></TopBar>
-      {/* <MainTitle className={classes.mainTitle}></MainTitle> */}
-      <MainCheck></MainCheck>
-      <Search></Search>
-      <Table></Table>
-    </Provider>
-  </Parallax>
-);
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +25,12 @@ export default function Home() {
   const classes = useStyles();
 
   return (
-      <Container></Container>
+    <Provider>
+      <TopBar></TopBar>
+      {/* <MainTitle className={classes.mainTitle}></MainTitle> */}
+      <MainCheck className={classes.mainCheck}></MainCheck>
+      <Search></Search>
+      <Table></Table>
+    </Provider>
   );
 }
