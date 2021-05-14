@@ -79,4 +79,4 @@ export default function CustomizedCheckbox() {
       {/*<StyledCheckbox defaultChecked />*/}
     </div>
   );
-}
+}//Button이랑 함수 연결하는거 알아보기

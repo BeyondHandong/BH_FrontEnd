@@ -4,6 +4,7 @@ import { Provider } from '../Context';
 import TextArea from '../components/TextArea'
 import {makeStyles } from "@material-ui/core/styles";
 import CheckBox from '../components/CheckBox'
+import CoutryDrop from '../components/CountryDrop'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,6 +35,7 @@ export default function Write() {
         <TextArea></TextArea>
         </div>
         <CheckBox></CheckBox>
+        <CoutryDrop></CoutryDrop>
     </Provider>
   );
 }
