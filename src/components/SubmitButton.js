@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#D5E7F2",
     float: "right",
     marginRight: '120px',
+    marginBottom: '20px',
   }
 }));
 

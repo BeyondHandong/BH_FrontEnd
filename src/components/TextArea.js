@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Editor } from "react-draft-wysiwyg";
-import { ContentState, EditorState, } from "draft-js";
+import { ContentState, EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import DraftToHtml from "draftjs-to-html";
 
 export default class TextArea extends Component {
 
@@ -19,6 +20,7 @@ export default class TextArea extends Component {
 
     render() {
         const {editorState} = this.state;
+        console.log(DraftToHtml(convertToRaw(editorState.getCurrentContent())));
         return (
             <div>
                 <Editor

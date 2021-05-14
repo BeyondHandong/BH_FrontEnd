@@ -75,7 +75,7 @@ export default function CustomizedCheckbox() {
   return (
     <div className={classes.contain}>
         <b>카테고리</b><br/><br/>
-      <StyledCheckbox /> 교환학생 <t/> <StyledCheckbox /> 해외대학원 <t/> <StyledCheckbox /> 해외취업 <t/> <StyledCheckbox /> 위홀  
+      <StyledCheckbox /> 교환학생  <StyledCheckbox /> 해외대학원  <StyledCheckbox /> 해외취업  <StyledCheckbox /> 위홀  
       {/*<StyledCheckbox defaultChecked />*/}
     </div>
   );

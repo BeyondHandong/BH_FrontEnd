@@ -11,6 +11,7 @@
     "axios": "^0.21.1",
     "cors": "^2.8.5",
     "draft-js": "^0.11.7",
+    "draftjs-to-html": "^0.9.1",
     "http-proxy-middleware": "^2.0.0",
     "material-ui-search-bar": "^1.0.0",
     "react": "^17.0.2",
