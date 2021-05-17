@@ -39,6 +39,7 @@ function useAsync(callback, deps = []) {
       dispatch({ type: 'SUCCESS', data });
     } catch (e) {
       dispatch({ type: 'ERROR', error: e });
+      console.log(e)
     }
   };
 
