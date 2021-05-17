@@ -13,6 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from "@material-ui/icons/AccountCircle"
 
 import MainTitle from './MainTitle'
+import Main from './Main'
 
 
 // page 
@@ -182,12 +183,15 @@ export default function NavTabs() {
         </Toolbar>
       </AppBar>
       
+      
       <TabPanel value={value} index={0}>
         <MainTitle title="정보게시판"></MainTitle>
+        <Main title="정보게시판" type="info"></Main>
       </TabPanel>
 
       <TabPanel value={value} index={1}>
         <MainTitle title="자유게시판"></MainTitle>
+        <Main title="자유게시판" type="free"></Main>
       </TabPanel>
     </div>
   );
