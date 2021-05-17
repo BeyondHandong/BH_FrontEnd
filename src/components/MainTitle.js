@@ -41,6 +41,7 @@ export default function CheckboxLabels(props) {
             {props.title}
           </Typography>
           <Button
+            onClick={event =>  window.location.href=`write`}
             className={classes.newButton}
             variant="contained"
             color="inherit"
