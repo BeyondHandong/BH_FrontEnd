@@ -1,11 +1,9 @@
 import React from 'react';
 import TopBar2 from '../components/TopBar2'
-import { Provider } from '../Context';
-import TextArea from '../components/TextArea'
+import { Provider } from '../components/write/WriteContext';
+import TextArea from '../components/write/TextArea'
+import CheckBox from '../components/write/CheckBox'
 import {makeStyles } from "@material-ui/core/styles";
-import CheckBox from '../components/CheckBox'
-import CoutryDrop from '../components/CountryDrop'
-import SubmitButton from '../components/SubmitButton'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,8 +19,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
-
 export default function Write() {
   const classes = useStyles();
 
@@ -34,10 +30,9 @@ export default function Write() {
       
       <div className={classes.textarea}>
         <TextArea></TextArea>
-        </div>
-        <CheckBox></CheckBox>
-        <CoutryDrop></CoutryDrop>
-        <SubmitButton></SubmitButton>
+      </div>
+      <CheckBox></CheckBox>
+        
     </Provider>
   );
 }

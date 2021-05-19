@@ -22,10 +22,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SimpleSelect() {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
+  const [country, setCountry] = React.useState('');
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setCountry(event.target.value);
   };
 
   return (
@@ -36,9 +36,9 @@ export default function SimpleSelect() {
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
-          value={age}
+          value={country}
           onChange={handleChange}
-          label="Age"
+          label="country"
         >
           <MenuItem value="">
             <em>나라</em>

@@ -16,3 +16,20 @@ export async function getPost(id) {
   );
   return response.data;
 }
+
+
+//POST: 특정 게시글 반환
+export async function sendPost() {
+  const response = await axios.post(
+    '/post', {
+      writerId: 5,
+      writerName: 'Williams',
+      type: '일반',
+      title: 'Williams',
+      content: 'Williams',
+      country: 'Williams',
+      category: 'Williams',
+      sector: ''
+    });
+  return response.data;
+}
