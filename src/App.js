@@ -16,7 +16,7 @@ export default function App() {
       <Route exact path="/signin" component={SignIn} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/write" component={Write} />
-      <Route exact path="/post/detail" component={Detail} />
+      <Route exact path="/detail" component={Detail} />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import SendComment from "./NewComment";
+import Comment from "./Comment";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -92,13 +93,20 @@ export default function Post(props) {
 
     const classes = useStyles();
     const [state] = useAsync(() => api.getPost(props.id), [props.id]);
-
-
     const { loading, data: data, error } = state; 
+
+    const [state_comment] = useAsync(() => api.getComments(props.id), [props.id]);
+    const { loading_comment, data: data_comment, error_comment } = state_comment; 
 
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
     if (!data) return null;
+    console.log(data);
+
+    if (loading_comment) return <div>로딩중..</div>;
+    if (error_comment) return <div>에러가 발생했습니다</div>;
+    if (!data_comment) return null;
+    console.log(data_comment);
     
     const date = (
         <span className={classes.postDateBlock}>
@@ -190,12 +198,12 @@ export default function Post(props) {
 
         <CardContent className={classes.content}>
             <Divider />
-            {/* {comments.map((comment, i) => (
-            <div key={comment._id}>
+            {data_comment.map((comment, i) => (
+            <div key={comment.id}>
                 <Divider />
                 <Comment comment={comment} />
             </div>
-            ))} */}
+            ))}
             <SendComment />
             {/* <Divider />
             <SendComment /> */}

@@ -1,9 +1,7 @@
 import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
-import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
-import moment from "moment";
 
 
 const useStyles = makeStyles({
@@ -30,9 +28,6 @@ const useStyles = makeStyles({
 });
 
 export default function Comment({ comment }) {
-  // console.log(data);
-
-  const { _id, user_id, name, avatar, text, created_at } = comment;
   console.log(comment);
 
   const classes = useStyles();
@@ -40,22 +35,21 @@ export default function Comment({ comment }) {
   return (
     <>
       <div className={classes.comment}>
-        <Avatar alt={avatar} src={avatar} />
         <div className={classes.commentText}>
           <div className={classes.commentAuthor}>
             <Typography variant="body2" component="p">
-              {name}
+              {comment.writerName}
             </Typography>
             <Typography
               variant="body2"
               component="p"
               className={classes.commentTime}
             >
-              시간
+              {comment.writeDate}
             </Typography>
           </div>
           <Typography variant="body2" component="p">
-            {text}
+            {comment.content}
           </Typography>
         </div>
       </div>
