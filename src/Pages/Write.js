@@ -16,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "auto",
     border: '1px solid rgba(0, 0, 0, 0.15)',
   },
+  boxes: {
+    marginLeft: "120px",
+    marginTop: theme.spacing(5),
+  },
 }));
 
 
@@ -31,7 +35,9 @@ export default function Write() {
       <div className={classes.textarea}>
         <TextArea></TextArea>
       </div>
-      <CheckBox></CheckBox>
+      <div className={classes.boxes}>
+        <CheckBox></CheckBox>
+      </div>
         
     </Provider>
   );

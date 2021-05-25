@@ -110,7 +110,7 @@ export default function FormControlLabelPlacement() {
         />
       </RadioGroup>
       
-      
+      <br />
       <FormLabel component="legend">게시판 카테고리 선택</FormLabel>
       <RadioGroup
         row
@@ -142,7 +142,7 @@ export default function FormControlLabelPlacement() {
           label="워킹홀리데이"
         />
       </RadioGroup>
-      
+      <br />
       <FormLabel component="legend">나라선택</FormLabel>
       <FormControl variant="outlined" required  className={classes.formControl}>
         <InputLabel id="demo-simple-select-outlined-label">나라</InputLabel>
