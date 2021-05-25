@@ -8,7 +8,7 @@ import {makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   textarea: {
-    display: 'flex',
+    
     maxWidth: "1200px",
     align: "center",
     marginTop: theme.spacing(5),
