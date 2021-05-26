@@ -204,9 +204,7 @@ export default function Post(props) {
                 <Comment comment={comment} />
             </div>
             ))}
-            <SendComment />
-            {/* <Divider />
-            <SendComment /> */}
+            <SendComment id={props.id}></SendComment>
         </CardContent>
         </Container>
     );

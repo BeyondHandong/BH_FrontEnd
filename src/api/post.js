@@ -45,3 +45,17 @@ export async function sendPost() {
     });
   return response.data;
 }
+
+
+//Post: 특정 게시글의 댓글 쓰기
+export async function sendComment(data) {
+  const response = await 
+  axios.post('/comment', 
+    data
+  ).catch(function (error) {
+    console.log("send comment error");
+    console.log(error)
+  });
+  console.log(data);
+  return response.data;
+}
