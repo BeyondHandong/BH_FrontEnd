@@ -63,6 +63,7 @@ export default function SendComment(props) {
     api.sendComment(jsonData, [jsonData]);
     console.log(jsonData);
     setValue('');
+    window.location.reload();
   };
 
   return (

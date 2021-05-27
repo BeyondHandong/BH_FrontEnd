@@ -93,21 +93,25 @@ const useStyles = makeStyles({
 export default function Post(props) {
 
     const classes = useStyles();
+    //get post 
     const [state] = useAsync(() => api.getPost(props.id), [props.id]);
     const { loading, data: data, error } = state; 
 
+    //get comment list 
     const [state_comment] = useAsync(() => api.getComments(props.id), [props.id]);
     const { loading_comment, data: data_comment, error_comment } = state_comment; 
 
+    //post info state
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
     if (!data) return null;
     console.log(data);
 
+    //comment list info 
     if (loading_comment) return <div>로딩중..</div>;
     if (error_comment) return <div>에러가 발생했습니다</div>;
     if (!data_comment) return null;
-    console.log(data_comment);
+    console.log(data_comment.length);
     
     const date = (
         <span className={classes.postDateBlock}>
@@ -167,7 +171,7 @@ export default function Post(props) {
         <CardContent>
             <Typography variant="body2" component="p" className={classes.postText}>
             {parse(data.content)}
-            
+          
             </Typography>
         </CardContent>
 
@@ -175,7 +179,7 @@ export default function Post(props) {
         <Grid container alignItems="center">
             <Grid item xs>
                 <Typography component="span" className={classes.postCommentNum}>
-                    댓글수 : 3
+                    댓글수 : {data_comment.length}
                 </Typography>
             </Grid>
             <Grid justify='evenly' item xs={2} >
