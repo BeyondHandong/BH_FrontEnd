@@ -11,7 +11,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import TextArea from './TextArea';
+import {convertToRaw } from "draft-js";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import DraftToHtml from "draftjs-to-html";
+import MUIEditor, { MUIEditorState } from "react-mui-draft-wysiwyg";
+import * as api from '../../api/post';
+import { BrowserRouter as Router } from "react-router-dom";
 
 const CustomizedRadio = withStyles({
   root: {
@@ -56,38 +61,64 @@ const useStyles = makeStyles((theme) => ({
 
 export default function FormControlLabelPlacement() {
   const classes = useStyles();
-  const [value_category, setCategoryValue] = React.useState("");
-  const [value_type, setTypeValue] = React.useState("");
   const [error, setError] = React.useState(false);
 
+  //카테고리 
+  const [value_category, setCategoryValue] = React.useState('');
   const handleCategoryRadioChange = (event) => {
-    setCategoryValue(event.target.value_category);
+    console.log(event.target.value);
+    setCategoryValue(event.target.value);
     setError(false);
   };
+  //게시판
+  const [value_type, setTypeValue] = React.useState('');
   const handleTypeRadioChange = (event) => {
-    setTypeValue(event.target.value_type);
+    console.log(event.target.value);
+    setTypeValue(event.target.value);
     setError(false);
   };
 
+  //나라 
   const [country, setCountry] = React.useState('')
   const handleChange = (event) => {
     setCountry(event.target.value);
   };
 
+  //컨텐츠 
+  const [editorState, setEditorState] = React.useState(
+    MUIEditorState.createEmpty()
+  );
+  const onChange = (newState) => {
+    setEditorState(newState);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    //서버에 정보 보내기
-    if (value_category === "best") {
-      setError(false);
-    } else if (value_type === "worst") {
-      setError(true);
-    } else {
-      setError(true);
-    }
+    {DraftToHtml(convertToRaw(editorState.getCurrentContent()))}
+
+    var data = new Object(); 
+    data.writerId = 1;
+    data.writerName = "남진우";
+    data.type = "일반";
+    data.title = "testtestslfjsdiafjdlasfhads;fhaskfhsadklfhks";
+    data.content = DraftToHtml(convertToRaw(editorState.getCurrentContent()));
+    data.country = country;
+    data.category = value_category;
+    data.sector = value_type;
+    var jsonData = JSON.stringify(data);
+    api.sendPost(jsonData, [jsonData]);
+    console.log(jsonData);
   };
 
   return (
     <form onSubmit={handleSubmit}>
+
+      <div> 
+        <MUIEditor 
+            editorState={editorState} 
+            onChange={onChange}
+            /> 
+      </div>
   
       <FormLabel component="legend">게시판 타입 선택</FormLabel>
       <RadioGroup
@@ -120,24 +151,24 @@ export default function FormControlLabelPlacement() {
         onChange={handleCategoryRadioChange}
       >
         <FormControlLabel
-          value="교환학생"
+          value="교환"
           control={<CustomizedRadio color="primary" />}
           label="교환학생"
         />
         <FormControlLabel
-          value="해외대학원"
+          value="대학원"
           control={<CustomizedRadio color="primary" />}
           label="해외대학원"
           // labelPlacement="start"
         />
         <FormControlLabel
-          value="해외취업"
+          value="취업"
           control={<CustomizedRadio color="primary" />}
           label="해외취업"
           // labelPlacement="bottom"
         />
         <FormControlLabel
-          value="워킹홀리데이"
+          value="워킹"
           control={<CustomizedRadio color="primary" />}
           label="워킹홀리데이"
         />
@@ -161,19 +192,19 @@ export default function FormControlLabelPlacement() {
           <MenuItem value={30}>일본</MenuItem>
         </Select>
       </FormControl>
-      
-      <React.Fragment>
-        <br />
-          <Button
-            className={classes.newButton}
-            variant="contained"
-            color="inherit"
-            endIcon={<CreateIcon />}
-            onSubmit={handleSubmit}
-          >
-            등록하기
-          </Button>
-      </React.Fragment>
-    </form>
+      <Router>
+        <Button
+              className={classes.newButton}
+              variant="contained"
+              color="inherit"
+              endIcon={<CreateIcon />}
+              onClick={handleSubmit}
+              onClick={event =>  window.location.href=`/`}
+              onSubmit={handleSubmit}
+            >
+              등록하기
+        </Button>
+      </Router>
+    </form >
   );
 }
