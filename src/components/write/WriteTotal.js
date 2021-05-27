@@ -17,6 +17,7 @@ import DraftToHtml from "draftjs-to-html";
 import MUIEditor, { MUIEditorState } from "react-mui-draft-wysiwyg";
 import * as api from '../../api/post';
 import { BrowserRouter as Router } from "react-router-dom";
+import TextField from '@material-ui/core/TextField';
 
 const CustomizedRadio = withStyles({
   root: {
@@ -62,6 +63,12 @@ const useStyles = makeStyles((theme) => ({
 export default function FormControlLabelPlacement() {
   const classes = useStyles();
   const [error, setError] = React.useState(false);
+  //제목
+  const [text, setText] = React.useState('');
+  const handleText = (e) => {
+    console.log(e.target.value);
+    setText(e.target.value);		//이벤트 발생한 value값으로 {text} 변경
+  };
 
   //카테고리 
   const [value_category, setCategoryValue] = React.useState('');
@@ -92,6 +99,7 @@ export default function FormControlLabelPlacement() {
     setEditorState(newState);
   };
 
+  //최종 전달 
   const handleSubmit = (event) => {
     event.preventDefault();
     {DraftToHtml(convertToRaw(editorState.getCurrentContent()))}
@@ -100,7 +108,7 @@ export default function FormControlLabelPlacement() {
     data.writerId = 1;
     data.writerName = "남진우";
     data.type = "일반";
-    data.title = "testtestslfjsdiafjdlasfhads;fhaskfhsadklfhks";
+    data.title = text;
     data.content = DraftToHtml(convertToRaw(editorState.getCurrentContent()));
     data.country = country;
     data.category = value_category;
@@ -108,10 +116,24 @@ export default function FormControlLabelPlacement() {
     var jsonData = JSON.stringify(data);
     api.sendPost(jsonData, [jsonData]);
     console.log(jsonData);
+    window.location.href=`/`;
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      <TextField
+          id="outlined-full-width"
+          style={{ margin: 8 }}
+          placeholder="제목을 입력하세요"
+          margin="normal"
+          onChange={handleText}
+          value={text}  
+          fullWidth
+          variant="outlined"
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
 
       <div> 
         <MUIEditor 
@@ -199,7 +221,7 @@ export default function FormControlLabelPlacement() {
               color="inherit"
               endIcon={<CreateIcon />}
               onClick={handleSubmit}
-              onClick={event =>  window.location.href=`/`}
+              // onClick={event =>  window.location.href=`/`}
               onSubmit={handleSubmit}
             >
               등록하기
