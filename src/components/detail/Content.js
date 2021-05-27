@@ -18,6 +18,7 @@ import PersonIcon from "@material-ui/icons/Person";
 
 import useAsync from '../../api/useAsync';
 import * as api from '../../api/post';
+import parse from 'html-react-parser';
 
 const useStyles = makeStyles({
   root: {
@@ -165,7 +166,8 @@ export default function Post(props) {
 
         <CardContent>
             <Typography variant="body2" component="p" className={classes.postText}>
-            {data.content}
+            {parse(data.content)}
+            
             </Typography>
         </CardContent>
 
