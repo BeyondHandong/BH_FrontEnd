@@ -29,33 +29,34 @@ export async function getComments(id) {
 }
 
 
-
 //POST: 특정 게시글 저장 
-export async function sendPost() {
+export async function sendPost(data) {
   const response = await axios.post(
-    '/post', {
-      writerId: 5,
-      writerName: 'Williams',
-      type: '일반',
-      title: 'Williams',
-      content: 'Williams',
-      country: 'Williams',
-      category: 'Williams',
-      sector: ''
+    '/post', data, 
+    {headers: {
+        Authorization: ``,
+        'Content-Type': 'application/json'
+      }}
+    ).catch(function (error) {
+      console.log("send post error");
+      console.log(error)
     });
-  return response.data;
+
+    console.log(data);
 }
 
 
 //Post: 특정 게시글의 댓글 쓰기
 export async function sendComment(data) {
-  const response = await 
-  axios.post('/comment', 
-    data
+  const response = await axios.post(
+    '/comment', data,
+  {headers: {
+    Authorization: ``,
+    'Content-Type': 'application/json'
+  }}
   ).catch(function (error) {
     console.log("send comment error");
     console.log(error)
   });
   console.log(data);
-  return response.data;
 }

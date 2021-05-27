@@ -2,7 +2,7 @@ import React from 'react';
 import TopBar2 from '../components/TopBar2'
 import { Provider } from '../components/write/WriteContext';
 import TextArea from '../components/write/TextArea'
-import CheckBox from '../components/write/CheckBox'
+import WriteTotal from '../components/write/WriteTotal'
 import {makeStyles } from "@material-ui/core/styles";
 
 
@@ -32,11 +32,11 @@ export default function Write() {
       {/* <MainTitle className={classes.mainTitle}></MainTitle> */}
       {/*<MainCheck className={classes.mainCheck}></MainCheck> */}
       
-      <div className={classes.textarea}>
+      {/* <div className={classes.textarea}>
         <TextArea></TextArea>
-      </div>
+      </div> */}
       <div className={classes.boxes}>
-        <CheckBox></CheckBox>
+        <WriteTotal></WriteTotal>
       </div>
         
     </Provider>
