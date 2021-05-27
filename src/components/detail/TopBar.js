@@ -9,7 +9,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from "@material-ui/icons/AccountCircle"
-
+import { BrowserRouter as Router } from "react-router-dom";
 
 
 // page 
@@ -97,9 +97,13 @@ export default function NavTabs() {
     <div className={classes.root}>
       <AppBar position="static" color="inherit" elevation={0} className={classes.appBar}>
         <Toolbar component="span" className={classes.toolbar}>
-          <Typography noWrap className={classes.title}>
+        <Router>
+          <Typography button noWrap 
+            className={classes.title} 
+            onClick={event =>  window.location.href=`/`}>
             Beyond Handong
           </Typography>
+          </Router>
 
           <Typography component="span" className={classes.font}>
                 남진우
