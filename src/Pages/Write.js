@@ -1,5 +1,5 @@
 import React from 'react';
-import TopBar2 from '../components/TopBar2'
+import OnlyTopBar from '../components/OnlyTopBar'
 import { Provider } from '../components/write/WriteContext';
 import TextArea from '../components/write/TextArea'
 import WriteTotal from '../components/write/WriteTotal'
@@ -28,7 +28,7 @@ export default function Write() {
 
   return (
     <Provider>
-      <TopBar2></TopBar2>
+      <OnlyTopBar></OnlyTopBar>
       {/* <MainTitle className={classes.mainTitle}></MainTitle> */}
       {/*<MainCheck className={classes.mainCheck}></MainCheck> */}
       
