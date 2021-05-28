@@ -55,5 +55,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://54.180.1.23:8080"
+  "proxy": "http://54.180.1.23:8080",
+  "devDependencies": {
+    "reactstrap": "^8.9.0"
+  }
 }

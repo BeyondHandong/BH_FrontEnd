@@ -5,9 +5,14 @@ import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-
+import CountryCollapsibleButton from "./CountryButton";
 
 const useStyles = makeStyles((theme) => ({
+  containerAlignment:{
+    // jerome will modify later
+    flex: 1,
+    flexDirection: 'row',
+  },
   form: {
     padding: '2px 4px',
     display: 'flex',
@@ -21,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     
   },
   input: {
-    flex: 1,
+    flex: 2,
     paddingLeft: theme.spacing(3),
     maxWidth: "550px",
     maxHeight: "45px",
@@ -53,7 +58,8 @@ export default function CustomizedInputBase() {
   };
 
   return ( 
-    <div align="center">
+    <div align="center" className={classes.containerAlignment}>
+      {/*<CountryCollapsibleButton title="나라선택하기"><span>Hello</span></CountryCollapsibleButton>*/}
       <Paper component="form" className={classes.form}>
         <InputBase
           value={input} 

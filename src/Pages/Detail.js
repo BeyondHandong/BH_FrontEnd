@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
   parallax: {
     height: '100%',
     flex: 1,
-    minHeight: "100%",
     minHeight: "1000px",
   }
 }));
