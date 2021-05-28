@@ -82,7 +82,7 @@ export default function CustomizedTables(props) {
         <TableBody>
           {rows.map((row) => (
             <StyledTableRow 
-              onClick={event =>  window.location.href=`post/detail?id=${row.id}`}
+              onClick={event =>  window.location.href=`detail?id=${row.id}`}
               key={row.id}>
               <StyledTableCell align="right">{row.type}</StyledTableCell>
               <StyledTableCell align="center" component="th" scope="row">

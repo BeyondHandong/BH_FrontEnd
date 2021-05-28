@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import TopBar from '../components/detail/TopBar'
+import OnlyTopBar from '../components/OnlyTopBar'
 import {makeStyles } from "@material-ui/core/styles";
 import Content from "../components/detail/Content";
 import { Parallax } from 'react-parallax';
@@ -32,7 +32,7 @@ export default function Detail(props) {
     return (
       <Parallax className={classes.parallax} blur={0} bgImage="https://static.wixstatic.com/media/11062b_7d8badf22ed9415e8c2974ee130d4943~mv2.jpg" bgImageAlt="santorini" strength={200}>
         <Fragment>
-        <TopBar></TopBar>
+        <OnlyTopBar></OnlyTopBar>
             <div className={classes.contentarea}>
                 <Content id={IdFromURL}></Content>
             </div>

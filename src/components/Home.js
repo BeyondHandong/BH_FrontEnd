@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
-import TopBar from './TopBar'
+import TabVerTopBar from './TabVerTopBar'
 import { Provider } from '../Context';
 import { Parallax } from 'react-parallax';
 
@@ -11,7 +11,7 @@ export default function Home() {
   return (
         <Parallax className={classes.parallax}  blur={0} bgImage="https://static.wixstatic.com/media/11062b_7d8badf22ed9415e8c2974ee130d4943~mv2.jpg" bgImageAlt="santorini" strength={200}>
           <Provider>
-            <TopBar></TopBar>
+            <TabVerTopBar></TabVerTopBar>
           </Provider>
         </Parallax>
   );

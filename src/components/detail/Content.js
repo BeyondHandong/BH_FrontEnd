@@ -1,5 +1,6 @@
 import React from "react";
 import SendComment from "./NewComment";
+import Comment from "./Comment";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -17,6 +18,7 @@ import PersonIcon from "@material-ui/icons/Person";
 
 import useAsync from '../../api/useAsync';
 import * as api from '../../api/post';
+import parse from 'html-react-parser';
 
 const useStyles = makeStyles({
   root: {
@@ -91,14 +93,25 @@ const useStyles = makeStyles({
 export default function Post(props) {
 
     const classes = useStyles();
+    //get post 
     const [state] = useAsync(() => api.getPost(props.id), [props.id]);
-
-
     const { loading, data: data, error } = state; 
 
+    //get comment list 
+    const [state_comment] = useAsync(() => api.getComments(props.id), [props.id]);
+    const { loading_comment, data: data_comment, error_comment } = state_comment; 
+
+    //post info state
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
     if (!data) return null;
+    console.log(data);
+
+    //comment list info 
+    if (loading_comment) return <div>로딩중..</div>;
+    if (error_comment) return <div>에러가 발생했습니다</div>;
+    if (!data_comment) return null;
+    console.log(data_comment.length);
     
     const date = (
         <span className={classes.postDateBlock}>
@@ -157,7 +170,8 @@ export default function Post(props) {
 
         <CardContent>
             <Typography variant="body2" component="p" className={classes.postText}>
-            {data.content}
+            {parse(data.content)}
+          
             </Typography>
         </CardContent>
 
@@ -165,7 +179,7 @@ export default function Post(props) {
         <Grid container alignItems="center">
             <Grid item xs>
                 <Typography component="span" className={classes.postCommentNum}>
-                    댓글수 : 3
+                    댓글수 : {data_comment.length}
                 </Typography>
             </Grid>
             <Grid justify='evenly' item xs={2} >
@@ -190,15 +204,13 @@ export default function Post(props) {
 
         <CardContent className={classes.content}>
             <Divider />
-            {/* {comments.map((comment, i) => (
-            <div key={comment._id}>
+            {data_comment.map((comment, i) => (
+            <div key={comment.id}>
                 <Divider />
                 <Comment comment={comment} />
             </div>
-            ))} */}
-            <SendComment />
-            {/* <Divider />
-            <SendComment /> */}
+            ))}
+            <SendComment id={props.id}></SendComment>
         </CardContent>
         </Container>
     );

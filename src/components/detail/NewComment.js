@@ -7,6 +7,9 @@ import InputBase from "@material-ui/core/InputBase";
 import Button from "@material-ui/core/Button";
 import CreateIcon from "@material-ui/icons/Create";
 
+import useAsync from '../../api/useAsync';
+import * as api from '../../api/post';
+
 const useStyles = makeStyles(theme => ({
   root: {
     // backgroundColor: "yellow",
@@ -40,7 +43,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SendComment() {
+export default function SendComment(props) {
   const classes = useStyles();
 
   const [value, setValue] = useState("");
@@ -50,7 +53,17 @@ export default function SendComment() {
   };
 
   const handleClick = e => {
-    console.log("SEND MESSAGE");
+    console.log(props.id);
+    var data = new Object(); 
+    data.postId = props.id; 
+    data.content = value;
+    data.writerId = 1;
+    data.writerName = "남진우";
+    var jsonData = JSON.stringify(data);
+    api.sendComment(jsonData, [jsonData]);
+    console.log(jsonData);
+    setValue('');
+    window.location.reload();
   };
 
   return (
