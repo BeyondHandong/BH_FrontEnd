@@ -16,6 +16,7 @@ import * as api from '../api/post';
 
 import { BrowserRouter as Router } from "react-router-dom";
 import { useCheckState } from '../Context';
+import TablePagination from '@material-ui/core/TablePagination';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -49,6 +50,18 @@ const StyledTableContainer = withStyles((theme) => ({
 const useStyles = makeStyles({
   table: {
     minWidth: 700,
+  },
+  page: {
+    padding: '2px 4px',
+    display: 'flex',
+    maxWidth: "600px",
+    maxHeight: "45px",
+    minWidth: "100px",
+    minHeight: "30px",
+    marginLeft: "100px",
+    align: "center",
+    borderRadius: 30,
+    
   },
 });
 
@@ -98,6 +111,19 @@ export default function CustomizedTables(props) {
   } 
 
   
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [dense, setDense] = React.useState(false);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   
   
   //console.log(search_state)  
@@ -111,8 +137,8 @@ export default function CustomizedTables(props) {
   if (error) return <div>에러가 발생했습니다</div>;
   if (!rows) return null;
 
-
-
+  
+  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
   return (
     <Router>
     <StyledTableContainer component={Paper}>
@@ -128,7 +154,9 @@ export default function CustomizedTables(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((row) => (
             <StyledTableRow 
               onClick={event =>  window.location.href=`detail?id=${row.id}`}
               key={row.id}>
@@ -142,10 +170,24 @@ export default function CustomizedTables(props) {
               <StyledTableCell align="right">{row.helpfulNum}{'  '}<FavoriteIcon /></StyledTableCell>
             </StyledTableRow>
           ))}
+          {emptyRows > 0 && (
+                <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
+                  <TableCell colSpan={6} />
+                </TableRow>
+              )}
         </TableBody>
       </Table>
-      
     </StyledTableContainer>
+    <TablePagination
+          className={classes.page}
+          rowsPerPageOptions={[5, 10, 15]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
     </Router>
   );
 }
