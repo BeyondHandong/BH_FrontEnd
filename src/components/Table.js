@@ -15,6 +15,7 @@ import useAsync from '../api/useAsync';
 import * as api from '../api/post';
 
 import { BrowserRouter as Router } from "react-router-dom";
+import { useCheckState } from '../Context';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -55,10 +56,44 @@ const useStyles = makeStyles({
 export default function CustomizedTables(props) {
   const classes = useStyles();
 
-  const [state] = useAsync(() => api.getPosts(props.type), [props.type]);
+  const checks = useCheckState();
 
-  const { loading, data: rows, error } = state; 
+  let button_state  = "?category="
+  let all_check = 1
 
+  if (checks[0].isCheck === true){
+    button_state = button_state + checks[0].category + ",";
+  }else {
+    all_check = 0;
+  }
+  
+  if (checks[1].isCheck === true){
+    button_state = button_state + checks[1].category + ",";
+  }else {
+    all_check = 0;
+  }
+
+  if (checks[2].isCheck === true){
+    button_state = button_state + checks[2].category + ",";
+  }else {
+    all_check = 0;
+  }
+
+  if (checks[3].isCheck === true){
+    button_state = button_state + checks[3].category + ",";
+  }else {
+    all_check = 0;
+  }
+
+  if (all_check === 1){
+    button_state = ""
+  } 
+
+
+  const [state] = useAsync(() => api.getPosts(props.type, button_state), [props.type, button_state]);
+  
+  const { loading, data: rows, error } = state;
+  
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다</div>;
   if (!rows) return null;
