@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 //GET: 모든 게시글 목록 반환
-export async function getPosts(type, checks) {
-  //console.log(`post/${type}${checks}`)
+export async function getPosts(type, checks, search) {
+  console.log(`post/${type}${checks}${search}`)
   const response = await axios.get(
-    `post/${type}${checks}`
+    `post/${type}${checks}${search}`
   );
   return response.data;
 }

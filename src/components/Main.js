@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import MainCheck from './MainCheck'
 import Search from './Search'
-import Table from './Table'
+
 
 
 export default function Main(props) {
@@ -10,8 +10,7 @@ export default function Main(props) {
     return (
       <div>
       <MainCheck></MainCheck>
-      <Search></Search>
-      <Table type={props.type}></Table>
+      <Search type={props.type}></Search>
     </div>
     );
   }

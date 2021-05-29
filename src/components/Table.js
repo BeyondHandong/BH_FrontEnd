@@ -58,8 +58,15 @@ export default function CustomizedTables(props) {
 
   const checks = useCheckState();
 
-  let button_state  = "?category="
+  let search_state = `&search=`
+  let button_state = "?category="
   let all_check = 1
+
+  if (props.search == ""){
+    search_state = ""
+  } else{
+    search_state = `&search=${props.search}`
+  }
 
   if (checks[0].isCheck === true){
     button_state = button_state + checks[0].category + ",";
@@ -87,10 +94,16 @@ export default function CustomizedTables(props) {
 
   if (all_check === 1){
     button_state = ""
+    search_state = `?search=${props.search}`
   } 
 
+  
+  
+  
+  //console.log(search_state)  
 
-  const [state] = useAsync(() => api.getPosts(props.type, button_state), [props.type, button_state]);
+
+  const [state] = useAsync(() => api.getPosts(props.type, button_state, search_state), [props.type, button_state, search_state]);
   
   const { loading, data: rows, error } = state;
   

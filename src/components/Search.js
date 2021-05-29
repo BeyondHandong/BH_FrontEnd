@@ -6,6 +6,7 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import CountryCollapsibleButton from "./CountryButton";
+import Table from './Table'
 
 const useStyles = makeStyles((theme) => ({
   containerAlignment:{
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: "45px",
     minWidth: "100px",
     minHeight: "30px",
-    backgroundColor: "#D5E7F2",
+    backgroundColor: "white",
     align: "center",
     borderRadius: 30,
     
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: "100px",
     minHeight: "30px",
     borderRadius: 30,
-    backgroundColor: "#D5E7F2"
+    backgroundColor: "white"
   },
   iconButton: {
     padding: 10,
@@ -47,16 +48,17 @@ const useStyles = makeStyles((theme) => ({
 
  
 
-export default function CustomizedInputBase() {
+export default function CustomizedInputBase(props) {
   const classes = useStyles();
   const [input, setInput] = useState("");
+  const [searches, setSearch] = useState("");
 
   const search = (e) => {
     e.preventDefault();
-    console.log("buttom clicked", input);
-    // search logic 구현 
+    setSearch(input);
+    //console.log(`buttom clicked ${searches}`);
   };
-
+  
   return ( 
     <div align="center" className={classes.containerAlignment}>
       {/*<CountryCollapsibleButton title="나라선택하기"><span>Hello</span></CountryCollapsibleButton>*/}
@@ -77,6 +79,7 @@ export default function CustomizedInputBase() {
           <SearchIcon />
         </IconButton>
       </Paper>
+      <Table search ={searches} type={props.type}></Table>
     </div>
 
   );
