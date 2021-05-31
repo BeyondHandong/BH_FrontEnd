@@ -18,6 +18,7 @@ import MUIEditor, { MUIEditorState } from "react-mui-draft-wysiwyg";
 import * as api from '../../api/post';
 import { BrowserRouter as Router } from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
+import TextArea from './TextArea'
 
 const CustomizedRadio = withStyles({
   root: {
