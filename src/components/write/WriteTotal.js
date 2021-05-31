@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 30,
     backgroundColor: "#D5E7F2",
     float: "right",
-    marginRight: '120px',
+    marginRight: '10px',
     marginBottom: '20px',
   },
   formControl: {

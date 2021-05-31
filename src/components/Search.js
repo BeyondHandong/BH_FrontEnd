@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: "45px",
     minWidth: "100px",
     minHeight: "30px",
-    backgroundColor: "white",
+    backgroundColor: "#f0f3f5",
     align: "center",
     borderRadius: 30,
     
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: "100px",
     minHeight: "30px",
     borderRadius: 30,
-    backgroundColor: "white"
+    backgroundColor: "#f0f3f5"
   },
   iconButton: {
     padding: 10,
