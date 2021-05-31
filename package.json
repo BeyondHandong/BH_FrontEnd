@@ -19,6 +19,7 @@
     "material-ui-search-bar": "^1.0.0",
     "moment": "^2.29.1",
     "react": "^17.0.2",
+    "react-circle-modal": "0.0.2",
     "react-dom": "^17.0.2",
     "react-draft-wysiwyg": "^1.14.7",
     "react-easyfullscreen": "^1.1.1",

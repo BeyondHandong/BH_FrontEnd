@@ -193,12 +193,12 @@ export default function NavTabs() {
       
       
       <TabPanel value={value} index={0}>
-        <MainTitle title="정보게시판"></MainTitle>
+        <MainTitle title="정보게시판" type="info"></MainTitle>
         <Main title="정보게시판" type="info"></Main>
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        <MainTitle title="자유게시판"></MainTitle>
+        <MainTitle title="자유게시판" type="free"></MainTitle>
         <Main title="자유게시판" type="free"></Main>
       </TabPanel>
     </div>
