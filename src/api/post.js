@@ -82,12 +82,33 @@ export async function signUp(data) {
   // response.data
   console.log(response.data);
   if(response.data == 'The email is already existed!'){
-
   }
-   
   else if(response.data == 'redirect:/')
     window.location.href=`signin`;
+}
 
-
+//Post: 로그인 
+export async function signIn(data) {
+  const response = await axios.post(
+    '/user/signin', data,
+  {headers: {
+    Authorization: ``,
+    'Content-Type': 'application/json'
+  }}
+  )
+  .catch(function (error) {
+    console.log("signUp error");
+    console.log(error)
+  });
+  console.log(data);
+  // response.data
+  console.log(response.data);
+  if(response.data == '-1'){
+    window.location.href=`signin`;
+  }
+  else {
+    window.location.href=`/`;
+  }
+    
 }
 

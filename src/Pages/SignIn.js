@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import GoogleLogin from '../components/GoogleLogin'
+import * as api from '../api/post';
 
 function Copyright() {
   return (
@@ -50,6 +51,34 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
   const classes = useStyles();
 
+
+  //아이디
+  const [email, setId] = React.useState('');
+  const handleEmail= (e) => {
+    console.log(e.target.value);
+    setId(e.target.value);		//이벤트 발생한 value값으로 {text} 변경
+  };
+
+  //패스워드
+  const [pw, setPw] = React.useState('');
+  const handlePw = (e) => {
+    console.log(e.target.value);
+    setPw(e.target.value);		//이벤트 발생한 value값으로 {text} 변경
+  };
+
+  //delay
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+
+  //서버 전달 
+  const handleSubmit = async () => {
+    var data = new Object(); 
+    data.email = email;
+    data.password = pw;
+    var jsonData = JSON.stringify(data);
+    api.signIn(jsonData, [jsonData]);
+    await delay(1000);
+  };
+
   return (
     <Container component="main" maxWidth="xs"> 
       <CssBaseline />
@@ -71,6 +100,8 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            value={email} 
+            onChange={handleEmail}
           />
           <TextField
             variant="outlined"
@@ -82,6 +113,8 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={pw} 
+            onChange={handlePw}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -93,6 +126,7 @@ export default function SignIn() {
             variant="contained"
             color='primary'
             className={classes.submit}
+            onClick={handleSubmit}
           >
             Sign In
           </Button>
