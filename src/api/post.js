@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Toast from './toast'
 
 //GET: 모든 게시글 목록 반환
 export async function getPosts(type, checks, search) {
@@ -60,3 +61,33 @@ export async function sendComment(data) {
   });
   console.log(data);
 }
+
+//delay
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
+//Post: 회원가입 
+export async function signUp(data) {
+  const response = await axios.post(
+    '/user/signup', data,
+  {headers: {
+    Authorization: ``,
+    'Content-Type': 'application/json'
+  }}
+  )
+  .catch(function (error) {
+    console.log("signUp error");
+    console.log(error)
+  });
+  console.log(data);
+  // response.data
+  console.log(response.data);
+  if(response.data == 'The email is already existed!'){
+
+  }
+   
+  else if(response.data == 'redirect:/')
+    window.location.href=`signin`;
+
+
+}
+

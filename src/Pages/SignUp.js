@@ -10,6 +10,12 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import * as api from '../api/post';
+
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function Copyright() {
   return (
@@ -47,6 +53,57 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
 
+  //이름
+  const [name, setName] = React.useState('');
+  const handleName= (e) => {
+    console.log(e.target.value);
+    setName(e.target.value);		//이벤트 발생한 value값으로 {text} 변경
+  };
+
+  //패스워드
+  const [pw, setPw] = React.useState('');
+  const handlePw = (e) => {
+    console.log(e.target.value);
+    setPw(e.target.value);		//이벤트 발생한 value값으로 {text} 변경
+  };
+
+  //패스워드
+  const [cpw, setCPw] = React.useState('');
+  const handleCPw = (e) => {
+    console.log(e.target.value);
+    setCPw(e.target.value);		//이벤트 발생한 value값으로 {text} 변경
+  };
+
+  //studentId
+  const [studentId, setStudentId] = React.useState('');
+  const handleStudentId= (e) => {
+    console.log(e.target.value);
+    setStudentId(e.target.value);		//이벤트 발생한 value값으로 {text} 변경
+  };
+
+  //이메일
+  const [email, setEmail] = React.useState('');
+  const handleEmail = (e) => {
+    console.log(e.target.value);
+    setEmail(e.target.value);		//이벤트 발생한 value값으로 {text} 변경
+  };
+
+   //delay
+   const delay = ms => new Promise(res => setTimeout(res, ms));
+
+  //서버 전달 
+  const handleSubmit = async () => {
+
+    var data = new Object(); 
+    data.name = name;
+    data.email = email;
+    data.student_id = studentId
+    data.password = pw;
+    var jsonData = JSON.stringify(data);
+    api.signUp(jsonData, [jsonData]);
+    await delay(1000);
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -59,38 +116,18 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-              />
-            </Grid>
             <Grid item xs={12}>
               <TextField
+                autoComplete="fname"
+                name="Name"
                 variant="outlined"
                 required
                 fullWidth
-                name="id"
-                label="ID"
-                type="id"
-                id="id"
+                id="Name"
+                label="Name"
+                autoFocus
+                value={name} 
+                onChange={handleName}
               />
             </Grid>
             <Grid item xs={12}>
@@ -103,6 +140,8 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={pw}  
+                onChange={handlePw}
               />
             </Grid>
             <Grid item xs={12}>
@@ -115,6 +154,8 @@ export default function SignUp() {
                 type="password_confirm"
                 id="password_confirm"
                 autoComplete="current-password"
+                value={cpw}  
+                onChange={handleCPw}
               />
             </Grid>
             <Grid item xs={12}>
@@ -126,6 +167,8 @@ export default function SignUp() {
                 label="StudentID"
                 type="studentid"
                 id="studentid"
+                value={studentId}  
+                onChange={handleStudentId}
               />
             </Grid>
             <Grid item xs={12}>
@@ -137,6 +180,8 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                value={email}  
+                onChange={handleEmail}
               />
             </Grid>
             <Grid item xs={12}>
@@ -144,17 +189,17 @@ export default function SignUp() {
             </Grid>
           </Grid>
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmit}
           >
             Sign Up
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="signin" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
