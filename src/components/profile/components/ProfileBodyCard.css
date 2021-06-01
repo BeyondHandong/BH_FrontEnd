@@ -1,0 +1,32 @@
+.profile-card {
+    max-width: 320px;
+    border-radius: 8px;
+    background-color: #ad3a3a;
+    padding: 24px 32px;
+    font-family: Lato;
+    color: #ffc0c0;
+    margin: 0 10px 24px;
+  }
+  
+  .profile-card .card-header {
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: white;
+  }
+  
+  .profile-card .card-dates {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+  }
+  
+  .profile-card .card-description {
+    font-size: 14px;
+    line-height: 2;
+    margin-top: 16px;
+  }
+  

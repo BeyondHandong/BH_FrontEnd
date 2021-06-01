@@ -1,0 +1,30 @@
+/* You should never do this! Unless it's for science... */
+* {
+    animation: 0.3s all ease-in-out;
+  }
+  
+  .profile-container {
+    background-image: var(--outer-bg-image);
+    min-height: calc(100vh - 180px);
+    width: 100vw;
+    display: block;
+    padding: 32px 0;
+  }
+  
+  .profile {
+    text-align: center;
+    width: 1440px;
+    margin: 0 auto;
+    font-size: 12px;
+    background-color: var(--inner-bg-colour);
+    padding: 60px 72px;
+    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+  }
+  
+  @media (max-width: 1440px) {
+    .profile {
+      width: calc(90% - 144px);
+    }
+  }
+  

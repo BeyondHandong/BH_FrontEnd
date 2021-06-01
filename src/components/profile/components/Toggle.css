@@ -1,0 +1,18 @@
+.darkModeToggle {
+    text-align: left;
+    font-size: 24px;
+  }
+  
+  .darkModeToggleButton {
+    color: var(--darkmode-toggle-button);
+    margin-right: 5px;
+  }
+  
+  .darkModeToggle:hover {
+    cursor: pointer;
+  }
+  
+  .darkModetoggleText {
+    color: var(--darkmode-toggle-text);
+  }
+  
