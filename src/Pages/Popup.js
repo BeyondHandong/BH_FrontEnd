@@ -47,7 +47,7 @@ export default function Example() {
         {(onClick) => (
             <div style={{ backgroundColor: '#f0f3f5', padding: '1em' }} align = "center">
             <p>
-                <h1>끌쓰기 권한 확인!!</h1>
+                <h1>글쓰기 권한 확인!!</h1>
                 <br/>
                 해외에 다녀 오신 분이나 정보의 목적의 글을 작성하고자 하시는 분만 '정보게시판'에 글을 남겨주세요!
                 <br/><br/><img src={warning} alt="Logo" className={classes.logo} height="100px" width="100px"/>
