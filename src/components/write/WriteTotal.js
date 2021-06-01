@@ -99,9 +99,12 @@ export default function FormControlLabelPlacement() {
     setEditorState(newState);
   };
 
+  //delay
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+
   //최종 전달 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async () => {
+
     {DraftToHtml(convertToRaw(editorState.getCurrentContent()))}
 
     var data = new Object(); 
@@ -116,6 +119,7 @@ export default function FormControlLabelPlacement() {
     var jsonData = JSON.stringify(data);
     api.sendPost(jsonData, [jsonData]);
     console.log(jsonData);
+    await delay(3000);
     window.location.href=`/`;
   };
 
