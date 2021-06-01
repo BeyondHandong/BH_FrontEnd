@@ -120,7 +120,7 @@ export default function FormControlLabelPlacement() {
     var jsonData = JSON.stringify(data);
     api.sendPost(jsonData, [jsonData]);
     console.log(jsonData);
-    await delay(3000);
+    await delay(1000);
     window.location.href=`/`;
   };
 

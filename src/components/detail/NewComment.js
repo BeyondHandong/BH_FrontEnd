@@ -52,7 +52,10 @@ export default function SendComment(props) {
     setValue(e.target.value);
   };
 
-  const handleClick = e => {
+  //delay
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+  
+  const handleClick = async () => {
     console.log(props.id);
     var data = new Object(); 
     data.postId = props.id; 
@@ -63,6 +66,7 @@ export default function SendComment(props) {
     api.sendComment(jsonData, [jsonData]);
     console.log(jsonData);
     setValue('');
+    await delay(1000);
     window.location.reload();
   };
 
