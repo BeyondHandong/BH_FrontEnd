@@ -17,8 +17,10 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid rgba(0, 0, 0, 0.15)',
   },
   boxes: {
-    marginLeft: "120px",
+    maxWidth: "1200px",
+    marginLeft: "auto",
     marginTop: theme.spacing(5),
+    marginRight: "auto",
   },
 }));
 

@@ -4,6 +4,7 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import CreateIcon from "@material-ui/icons/Create";
+import Popup from '../Pages/Popup'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,34 +23,52 @@ const useStyles = makeStyles((theme) => ({
     minWidth: "30px",
     minHeight: "30px",
     borderRadius: 30,
-    backgroundColor: "",
+    backgroundColor: "#f0f3f5",
   }
 }));
 
 export default function CheckboxLabels(props) {
   const classes = useStyles();
 
-  return (
-    <React.Fragment>
-      <Container maxWidth="lg" className={classes.root}>
-          <Typography
-            component="span"
-            className={classes.pageTitle}
-            color="inherit"
-            gutterBottom
-          >
-            {props.title}
-          </Typography>
-          <Button
-            onClick={event =>  window.location.href=`write`}
-            className={classes.newButton}
-            variant="contained"
-            color="inherit"
-            endIcon={<CreateIcon />}
-          >
-            새글쓰기
-          </Button>
-      </Container>
-    </React.Fragment>
-  );
+  if (props.type == "info"){
+    return (
+      <React.Fragment>
+        <Container maxWidth="lg" className={classes.root}>
+            <Typography
+              component="span"
+              className={classes.pageTitle}
+              color="inherit"
+              gutterBottom
+            >
+              {props.title}
+            </Typography>
+            <Popup></Popup>
+        </Container>
+      </React.Fragment>
+    );
+  } else {
+    return (
+      <React.Fragment>
+        <Container maxWidth="lg" className={classes.root}>
+            <Typography
+              component="span"
+              className={classes.pageTitle}
+              color="inherit"
+              gutterBottom
+            >
+              {props.title}
+            </Typography>
+            <Button
+              onClick={event =>  window.location.href=`write`}
+              className={classes.newButton}
+              variant="contained"
+              color="inherit"
+              endIcon={<CreateIcon />}
+            >
+              새글쓰기
+            </Button>
+        </Container>
+      </React.Fragment>
+    );
+  }
 }

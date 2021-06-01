@@ -10,6 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from "@material-ui/icons/AccountCircle"
 import { BrowserRouter as Router } from "react-router-dom";
+import Logo from './Logo'
 
 
 // page 
@@ -102,6 +103,7 @@ export default function NavTabs() {
             className={classes.title} 
             onClick={event =>  window.location.href=`/`}>
             Beyond Handong
+            <Logo></Logo>
           </Typography>
           </Router>
 

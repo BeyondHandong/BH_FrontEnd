@@ -15,6 +15,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle"
 import { BrowserRouter as Router } from "react-router-dom";
 import MainTitle from './MainTitle'
 import Main from './Main'
+import Logo from './Logo'
 
 
 // page 
@@ -130,6 +131,7 @@ export default function NavTabs() {
             className={classes.title} 
             onClick={event =>  window.location.href=`/`}>
             Beyond Handong
+            <Logo></Logo>
           </Typography>
           </Router>
           
@@ -191,12 +193,12 @@ export default function NavTabs() {
       
       
       <TabPanel value={value} index={0}>
-        <MainTitle title="정보게시판"></MainTitle>
+        <MainTitle title="정보게시판" type="info"></MainTitle>
         <Main title="정보게시판" type="info"></Main>
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        <MainTitle title="자유게시판"></MainTitle>
+        <MainTitle title="자유게시판" type="free"></MainTitle>
         <Main title="자유게시판" type="free"></Main>
       </TabPanel>
     </div>
