@@ -214,9 +214,9 @@ export default function FormControlLabelPlacement() {
           <MenuItem value="">
             <em>나라</em>
           </MenuItem>
-          <MenuItem value={10}>미국</MenuItem>
-          <MenuItem value={20}>폴란드</MenuItem>
-          <MenuItem value={30}>일본</MenuItem>
+          <MenuItem value={"미국"}>미국</MenuItem>
+          <MenuItem value={"폴란드"}>폴란드</MenuItem>
+          <MenuItem value={"일본"}>일본</MenuItem>
         </Select>
       </FormControl>
       <Router>
