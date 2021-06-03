@@ -2,10 +2,10 @@ import axios from 'axios';
 import Toast from './toast'
 
 //GET: 모든 게시글 목록 반환
-export async function getPosts(type, checks, search) {
-  console.log(`post/${type}${checks}${search}`)
+export async function getPosts(type, checks, search, country) {
+  console.log(`post/${type}${checks}${search}${country}`)
   const response = await axios.get(
-    `post/${type}${checks}${search}`
+    `post/${type}${checks}${search}${country}`
   );
   return response.data;
 }

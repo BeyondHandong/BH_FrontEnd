@@ -1,68 +1,71 @@
-import React,{useState, useEffect } from "react";
-import { Collapse } from "reactstrap";
-import {makeStyles} from "@material-ui/core/styles";
+import React, {useState} from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Search from './Search';
+import { useCountryDispatch } from '../Context';
 
 const useStyles = makeStyles((theme) => ({
-
-  Button: {
-    padding: 10,
-    color: "#D5E7F2",
-      // paddingLeft: theme.spacing(3),
-    maxWidth: "550px",
-    maxHeight: "45px",
-    minWidth: "100px",
-    minHeight: "30px",
-      align: "centerLeft",
-    borderRadius: 30,
-      backgroundColor: "#5A98BF",
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    marginTop: -3,
   },
-  divider: {
-    height: 28,
-    margin: 4,
+  main: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: "row",
   },
+  search: {
+    minWidth: 630,
+  },
+  
 }));
 
-function CountryCollapsibleButton({ children, ...props}){
-    const classes = useStyles();
-    const {title, collapse} = props;
-    const [isCollapse, setIsCollapse] = useState(collapse);
-    const [icon, setIcon] = useState("fa fa-chevron-down");
-    const animate = collapse => {
-    setIsCollapse(!collapse);
-    setIcon(state => {
-      return state === "fa fa-chevron-down"
-        ? "fa fa-chevron-right"
-        : "fa fa-chevron-down";
-    });
-  };
-  useEffect(() => {
-    animate(!collapse);
-  }, [collapse]);
-    return (
-        <div className="coll-panel">
-            <button
-                type="button"
-                // className="coll-panel-btn btn-primary btn-block text-left"
-                className={classes.Button}
-                onClick={() => animate()}
-            >
-                <i className={icon} /> {title}
-            </button>
-            <Collapse className="border text-left p-2" isOpen={isCollapse}>
-                {children}
-            </Collapse>
-        </div>
-    );
-}
-CountryCollapsibleButton.defaultProps = {
-    /*children: {
-        first: "미국",
-        second: "폴란드",
-        third: "일본",
-    },*/
-    // TODO: 어떻게 하는지 답 찾기
-    title: "나라선택",
-    collapse: true
-};
+export default function GroupedSelect(props) {
+  const classes = useStyles();
 
-export default CountryCollapsibleButton;
+  const dispatch = useCountryDispatch();
+  
+  
+  
+  
+
+  const [country,setCountry] = useState("All")
+  const handleChange = (event) => {
+    setCountry(event.target.value);
+  };
+
+  dispatch({ type: 'Select', country });
+  
+
+  return (
+    <div className={classes.main}>
+      <div>
+      <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="grouped-select">나라선택</InputLabel>
+        <Select defaultValue="" id="grouped-select"
+        value={country}
+        onChange={handleChange}
+        >
+          <MenuItem value={"All"}>전체</MenuItem>
+          <MenuItem value={"미국"}>미국</MenuItem>
+          <MenuItem value={"캐나다"}>캐나다</MenuItem>
+          <MenuItem value={"영국"}>영국</MenuItem>
+          <MenuItem value={"폴란드"}>폴란드</MenuItem>
+          <MenuItem value={"일본"}>일본</MenuItem>
+          <MenuItem value={"싱가포르"}>싱가포르</MenuItem>
+          <MenuItem value={"호주"}>호주</MenuItem>
+          <MenuItem value={"뉴질랜드"}>뉴질랜드</MenuItem>
+        </Select>
+      </FormControl>
+      </div>
+      <div className={classes.search}>
+        <Search type={props.type}></Search>
+      </div>
+    </div>
+  );
+}

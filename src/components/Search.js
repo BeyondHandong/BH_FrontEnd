@@ -5,12 +5,12 @@ import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-// import CountryCollapsibleButton from "./CountryButton";
+import CountryCollapsibleButton from "./CountryButton";
 import Table from './Table'
+import { useSearchDispatch } from '../Context';
 
 const useStyles = makeStyles((theme) => ({
   containerAlignment:{
-    // jerome will modify later
     flex: 1,
     flexDirection: 'row',
   },
@@ -51,17 +51,20 @@ const useStyles = makeStyles((theme) => ({
 export default function CustomizedInputBase(props) {
   const classes = useStyles();
   const [input, setInput] = useState("");
-  const [searches, setSearch] = useState("");
+  const dispatch = useSearchDispatch();
+  let initiate = "null"
 
   const search = (e) => {
     e.preventDefault();
-    setSearch(input);
-    //console.log(`buttom clicked ${searches}`);
+    if (input == ""){
+      dispatch({ type: 'NewKey', initiate });
+    }else{
+      dispatch({ type: 'NotNewKey', input });
+    }
   };
   
   return ( 
     <div align="center" className={classes.containerAlignment}>
-      {/*<CountryCollapsibleButton title="나라선택하기"><span>Hello</span></CountryCollapsibleButton>*/}
       <Paper component="form" className={classes.form}>
         <InputBase
           value={input} 
@@ -79,7 +82,7 @@ export default function CustomizedInputBase(props) {
           <SearchIcon />
         </IconButton>
       </Paper>
-      <Table search ={searches} type={props.type}></Table>
+      
     </div>
 
   );

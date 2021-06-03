@@ -15,7 +15,7 @@ import useAsync from '../api/useAsync';
 import * as api from '../api/post';
 
 import { BrowserRouter as Router } from "react-router-dom";
-import { useCheckState } from '../Context';
+import { useCheckState, useSearch, useCountry } from '../Context';
 import TablePagination from '@material-ui/core/TablePagination';
 
 const StyledTableCell = withStyles((theme) => ({
@@ -54,14 +54,14 @@ const useStyles = makeStyles({
   },
   page: {
     padding: '2px 4px',
-    display: 'flex',
+    
     maxWidth: "600px",
     maxHeight: "45px",
     minWidth: "100px",
     minHeight: "30px",
-    marginLeft: "100px",
+    marginLeft: "280px",
     align: "center",
-    borderRadius: 30,
+    //borderRadius: 30,
     
   },
 });
@@ -71,15 +71,26 @@ export default function CustomizedTables(props) {
   const classes = useStyles();
 
   const checks = useCheckState();
-
+  const checks1 = useSearch();
+  const checks2 = useCountry();
+  
+  let init_search = ""
+  let country_state = "&countries="
   let search_state = `&search=`
   let button_state = "?category="
   let all_check = 1
 
-  if (props.search == ""){
+  if(checks2 == "All"){
+    country_state = ""
+  }else{
+    country_state = `&countries=${checks2}`
+  }
+
+  if (checks1 == "null"){
     search_state = ""
   } else{
-    search_state = `&search=${props.search}`
+    init_search = checks1
+    search_state = `&search=${init_search}`
   }
 
   if (checks[0].isCheck === true){
@@ -108,8 +119,10 @@ export default function CustomizedTables(props) {
 
   if (all_check === 1){
     button_state = ""
-    search_state = `?search=${props.search}`
-  } 
+    search_state = `?search=${init_search}`
+  } else{
+
+  }
 
   
   const [page, setPage] = React.useState(0);
@@ -130,7 +143,7 @@ export default function CustomizedTables(props) {
   //console.log(search_state)  
 
 
-  const [state] = useAsync(() => api.getPosts(props.type, button_state, search_state), [props.type, button_state, search_state]);
+  const [state] = useAsync(() => api.getPosts(props.type, button_state, search_state, country_state), [props.type, button_state, search_state, country_state]);
   
   const { loading, data: rows, error } = state;
   
