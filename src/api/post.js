@@ -103,7 +103,7 @@ export async function signIn(data) {
   console.log(data);
   // response.data
   console.log(response.data);
-  if(response.data == '-1'){
+  if(response.data === '-1'){
     window.location.href=`signin`;
   }
   else {
