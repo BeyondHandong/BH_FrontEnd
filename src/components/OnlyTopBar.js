@@ -108,7 +108,7 @@ export default function NavTabs() {
           </Router>
 
           <Typography component="span" className={classes.font}>
-                남진우
+            {window.localStorage.getItem("name")}
           </Typography>
           {auth && (
             <div>

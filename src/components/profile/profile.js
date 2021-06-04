@@ -1,31 +1,25 @@
 import React from 'react';
 
 import userData from './data/UserData.json';
-import DarkModeToggle from './components/Toggle';
 import ProfileHeader from './components/ProfileHeader';
-import ProfileBody from './components/ProfileBody';
 import './styles/colours.css';
 import './profile.css';
 import OnlyTopBar from '../OnlyTopBar'
-import { Provider } from '../../Context';
+import {Provider } from '../../Context';
 
 export default function Profile() {
   const isDarkMode = false;
   const darkModeClass = isDarkMode ? 'dark' : 'light';
 
-  
   return (
-      <div>
-
+      <Provider>
             <OnlyTopBar></OnlyTopBar>
-
           <div className={'profile-container ' + darkModeClass}>
             <div className='profile'>
           <ProfileHeader userData={userData} />
-          {/* <ProfileBody userDetails={userData.details} /> */}
         </div>
       </div>
-      </div>
+      </Provider>
       
 
   )

@@ -60,8 +60,8 @@ export default function SendComment(props) {
     var data = new Object(); 
     data.postId = props.id; 
     data.content = value;
-    data.writerId = 1;
-    data.writerName = "남진우";
+    data.writerId = window.localStorage.getItem("user");
+    data.writerName = window.localStorage.getItem("name");
     var jsonData = JSON.stringify(data);
     api.sendComment(jsonData, [jsonData]);
     console.log(jsonData);

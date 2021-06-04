@@ -109,8 +109,8 @@ export default function FormControlLabelPlacement() {
     {DraftToHtml(convertToRaw(editorState.getCurrentContent()))}
 
     var data = new Object(); 
-    data.writerId = 1;
-    data.writerName = "남진우";
+    data.writerId = window.localStorage.getItem("user");
+    data.writerName = window.localStorage.getItem("name");
     data.type = "일반";
     data.title = text;
     data.content = DraftToHtml(convertToRaw(editorState.getCurrentContent()));
