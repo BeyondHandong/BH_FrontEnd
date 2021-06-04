@@ -97,7 +97,7 @@ export default function SignUp() {
     var data = new Object(); 
     data.name = name;
     data.email = email;
-    data.student_id = studentId
+    data.studentId = studentId
     data.password = pw;
     var jsonData = JSON.stringify(data);
     api.signUp(jsonData, [jsonData]);
@@ -144,7 +144,7 @@ export default function SignUp() {
                 onChange={handlePw}
               />
             </Grid>
-            <Grid item xs={12}>
+            {/*<Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
@@ -157,7 +157,7 @@ export default function SignUp() {
                 value={cpw}  
                 onChange={handleCPw}
               />
-            </Grid>
+            </Grid>*/}
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
