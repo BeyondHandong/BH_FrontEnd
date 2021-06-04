@@ -222,6 +222,7 @@ export default function FormControlLabelPlacement() {
           <MenuItem value={"싱가포르"}>싱가포르</MenuItem>
           <MenuItem value={"호주"}>호주</MenuItem>
           <MenuItem value={"뉴질랜드"}>뉴질랜드</MenuItem>
+          <MenuItem value={"기타"}>기타</MenuItem>
         </Select>
       </FormControl>
       <Router>
