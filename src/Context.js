@@ -1,4 +1,4 @@
-import React, { useReducer, createContext, useContext } from 'react';
+import React, { useReducer, createContext, useContext, useRef } from 'react';
 
 const checkboxList = [
     {
@@ -26,7 +26,8 @@ const checkboxList = [
       category: '워홀'
     }
   ];
-
+let userInfo = -1;
+// let userInfo = {id: -1, name: "none", email: "none", student_id: "none", create_time: "none", authKey: -1};
 let search = "null";
 let country = "All";
 
@@ -62,17 +63,49 @@ function Country(state, action) {
   }
 }
 
+function User(state, action) {
+  switch (action.type) {
+    case 'Login':
+      return userInfo = action.id
+    default:
+      return state
+  }
+}
+
+// function User(state, action) {
+//   switch (action.type) {
+//     case 'Login':
+//         userInfo.id = action.id;
+//         userInfo.name = action.name;
+//         userInfo.email = action.name;
+//         userInfo.student_id = action.student_id;
+//         userInfo.create_time = action.create_time;
+//         userInfo.authKey = action.authKey;
+//         console.log(userInfo);
+//       return userInfo = action.id
+//     default:
+//       return state
+//   }
+// }
+
+//check state
 const CheckStateContext = createContext();
 const CheckDispatchContext = createContext();
+//search
 const SearchContext = createContext();
 const SearchDispatchContext = createContext();
+//country
 const CountryContext = createContext();
 const CountryDispatchContext = createContext();
+//user
+const UserContext = createContext();
+const UserDispatchContext = createContext();
 
 export function Provider({ children }) {
   const [state, dispatch] = useReducer(checkReducer, checkboxList);
   const [searchs, dispatch1] = useReducer(Search, search);
   const [countries, dispatch2] = useReducer(Country, country);
+  const [user, dispatch3] = useReducer(User, userInfo);
 
   return (
     <CheckStateContext.Provider value={state}>
@@ -81,7 +114,11 @@ export function Provider({ children }) {
           <SearchDispatchContext.Provider value={dispatch1}>
             <CountryContext.Provider value={countries}>
               <CountryDispatchContext.Provider value={dispatch2}>
-                {children}
+                <UserContext.Provider value={user}>
+                  <UserDispatchContext.Provider value={dispatch3}>
+                    {children}
+                  </UserDispatchContext.Provider>
+                </UserContext.Provider>    
               </CountryDispatchContext.Provider>
             </CountryContext.Provider>    
           </SearchDispatchContext.Provider>    
@@ -133,6 +170,22 @@ export function useCountry() {
 
 export function useCountryDispatch() {
   const context = useContext(CountryDispatchContext);
+  if (!context) {
+    throw new Error('Cannot find CheckProvider');
+  }
+  return context;
+}
+
+export function useUser() {
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error('Cannot find CheckProvider');
+  }
+  return context;
+}
+
+export function useUserDispatch() {
+  const context = useContext(UserDispatchContext);
   if (!context) {
     throw new Error('Cannot find CheckProvider');
   }

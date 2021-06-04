@@ -15,7 +15,7 @@ import useAsync from '../api/useAsync';
 import * as api from '../api/post';
 
 import { BrowserRouter as Router } from "react-router-dom";
-import { useCheckState, useSearch, useCountry } from '../Context';
+import { useUser, useCheckState, useSearch, useCountry } from '../Context';
 import TablePagination from '@material-ui/core/TablePagination';
 
 const StyledTableCell = withStyles((theme) => ({
@@ -68,12 +68,15 @@ const useStyles = makeStyles({
 });
 
 
+
 export default function CustomizedTables(props) {
   const classes = useStyles();
 
   const checks = useCheckState();
   const checks1 = useSearch();
   const checks2 = useCountry();
+  const userInfo = useUser();
+  console.log(userInfo);
   
   let init_search = ""
   let country_state = "&countries="
@@ -139,9 +142,9 @@ export default function CustomizedTables(props) {
     setPage(0);
   };
 
+
   
-  
-  //console.log(search_state)  
+
 
 
   const [state] = useAsync(() => api.getPosts(props.type, button_state, search_state, country_state), [props.type, button_state, search_state, country_state]);
@@ -173,7 +176,7 @@ export default function CustomizedTables(props) {
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((row) => (
             <StyledTableRow 
-              onClick={event =>  window.location.href=`detail?id=${row.id}`}
+              onClick={event => window.localStorage.getItem("user") != "" ? window.location.href=`detail?id=${row.id}` : window.location.href=`signin`}
               key={row.id}>
               <StyledTableCell align="right">{row.type}</StyledTableCell>
               <StyledTableCell align="center" component="th" scope="row">

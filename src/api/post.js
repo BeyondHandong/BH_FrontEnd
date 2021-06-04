@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Toast from './toast'
+import {useUser} from '../Context'
 
 //GET: 모든 게시글 목록 반환
 export async function getPosts(type, checks, search, country) {
@@ -83,8 +84,7 @@ export async function signUp(data) {
   console.log(response.data);
   if(response.data == 'The email is already existed!'){
   }
-  else if(response.data == 'redirect:/')
-    window.location.href=`signin`;
+  window.location.href=`signin`;
 }
 
 //Post: 로그인 
@@ -103,12 +103,22 @@ export async function signIn(data) {
   console.log(data);
   // response.data
   console.log(response.data);
-  if(response.data === '-1'){
+  if(response.data === -1){
     window.location.href=`signin`;
   }
   else {
-    window.location.href=`/`;
+    return response.data;
   }
     
 }
+
+//GET: 유저 정보 받기
+export async function getUserInfo(userId) {
+  console.log(`user/profile/${userId}`)
+  const response = await axios.get(
+    `user/profile/${userId}`
+  );
+  return response.data;
+}
+
 
