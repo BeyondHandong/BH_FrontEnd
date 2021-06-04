@@ -121,4 +121,11 @@ export async function getUserInfo(userId) {
   return response.data;
 }
 
-
+//DELETE: 특정 게시글 삭제
+export async function Delete(id) {
+  console.log(`post/${id}`)
+  const response = await axios.delete(
+    `post/${id}`
+  );
+  return response.data;
+}
