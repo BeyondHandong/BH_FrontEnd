@@ -134,6 +134,25 @@ export default function Post(props) {
         </div>
     );
 
+    let helpful = data.helpfulNum
+    console.log(data.id)
+
+    const Helpnum = (event) => {
+      helpful = helpful + 1
+      console.log(helpful)
+    };
+
+    //delay
+   const delay = ms => new Promise(res => setTimeout(res, ms));
+
+    const Delete = async () => {
+      api.Delete(data.id);
+      await delay(1000)
+      window.location.href=`/`
+    };
+
+    console.log(helpful)
+
     return (
         <Container className={classes.root}>
         <div className={classes.postTitle}>
@@ -182,12 +201,13 @@ export default function Post(props) {
                     댓글수 : {data_comment.length}
                 </Typography>
             </Grid>
-            <Grid justify='evenly' item xs={2} >
+            <Grid justify='evenly' item xs={4}>
                 <CardActions disableSpacing>
                     <Button
                         className={classes.button}
                         variant="contained"
                         color="inherit"
+                        onClick={Helpnum} 
                         >
                         고마워요
                     </Button>
@@ -197,6 +217,14 @@ export default function Post(props) {
                         color="inherit"
                         >
                         스크랩
+                    </Button>
+                    <Button
+                        className={classes.button}
+                        variant="contained"
+                        color="inherit"
+                        onClick={Delete} 
+                        >
+                        삭제
                     </Button>
                 </CardActions>
             </Grid>
