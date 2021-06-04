@@ -93,6 +93,11 @@ const useStyles = makeStyles({
 export default function Post(props) {
 
     const classes = useStyles();
+
+    //get Logged in userid
+    let userid = window.localStorage.getItem('user');
+    console.log(userid)
+
     //get post 
     const [state] = useAsync(() => api.getPost(props.id), [props.id]);
     const { loading, data: data, error } = state; 
@@ -112,6 +117,8 @@ export default function Post(props) {
     if (error_comment) return <div>에러가 발생했습니다</div>;
     if (!data_comment) return null;
     console.log(data_comment.length);
+
+    console.log(data.id)
     
     const date = (
         <span className={classes.postDateBlock}>
@@ -152,8 +159,8 @@ export default function Post(props) {
     };
 
     console.log(helpful)
-
-    return (
+    if (userid == data.writerId){
+      return (
         <Container className={classes.root}>
         <div className={classes.postTitle}>
             <Grid container alignItems="center">
@@ -201,7 +208,7 @@ export default function Post(props) {
                     댓글수 : {data_comment.length}
                 </Typography>
             </Grid>
-            <Grid justify='evenly' item xs={4}>
+            <Grid justify='evenly' item xs={3}>
                 <CardActions disableSpacing>
                     <Button
                         className={classes.button}
@@ -242,4 +249,88 @@ export default function Post(props) {
         </CardContent>
         </Container>
     );
+  }else {
+    return(
+      <Container className={classes.root}>
+        <div className={classes.postTitle}>
+            <Grid container alignItems="center">
+            <Grid item xs>
+                <Typography gutterBottom variant="h4">
+                    {data.title} 
+                </Typography>
+            </Grid>
+            </Grid>
+            <Grid container alignItems="center">
+            <Grid item xs>
+                <Typography component="span" color="textSecondary">
+                    {/* {data.category.map((tag, i) => (
+                    <Chip
+                        key={i}
+                        label={tag}
+                        component="a"
+                        clickable
+                        className={classes.postTag}
+                    />
+                    ))} */}
+                </Typography>
+            </Grid>
+            <Grid justify='evenly' item xs={1} >
+                <Typography className={classes.postAuthor}>
+                {author}
+                {date}
+                </Typography>
+            </Grid>
+            </Grid>
+        </div>
+        <Divider variant="middle" />
+
+        <CardContent>
+            <Typography variant="body2" component="p" className={classes.postText}>
+            {parse(data.content)}
+          
+            </Typography>
+        </CardContent>
+
+        
+        <Grid container alignItems="center">
+            <Grid item xs>
+                <Typography component="span" className={classes.postCommentNum}>
+                    댓글수 : {data_comment.length}
+                </Typography>
+            </Grid>
+            <Grid justify='evenly' item xs={2}>
+                <CardActions disableSpacing>
+                    <Button
+                        className={classes.button}
+                        variant="contained"
+                        color="inherit"
+                        onClick={Helpnum} 
+                        >
+                        고마워요
+                    </Button>
+                    <Button
+                        className={classes.button}
+                        variant="contained"
+                        color="inherit"
+                        >
+                        스크랩
+                    </Button>
+                </CardActions>
+            </Grid>
+            </Grid>
+
+        <CardContent className={classes.content}>
+            <Divider />
+            {data_comment.map((comment, i) => (
+            <div key={comment.id}>
+                <Divider />
+                <Comment comment={comment} />
+            </div>
+            ))}
+            <SendComment id={props.id}></SendComment>
+        </CardContent>
+        </Container>
+    );
+  }
+    
 }
