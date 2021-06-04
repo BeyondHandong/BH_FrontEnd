@@ -47,9 +47,11 @@ export default function Example() {
         {(onClick) => (
             <div style={{ backgroundColor: '#f0f3f5', padding: '1em' }} align = "center">
             <p>
-                <h1>글쓰기 권한 확인!!</h1>
+                <h1>글쓰기 권한이 없습니다!!</h1>
                 <br/>
-                해외에 다녀 오신 분이나 정보의 목적의 글을 작성하고자 하시는 분만 '정보게시판'에 글을 남겨주세요!
+                해외에 다녀 오신 분이나 정보 목적의 글을 작성하고자 하시는 분은 21400749@handong.edu 로 해외 체류 증명할 수 있는 서류를 보내주시기 바랍니다.
+                <br/><br/>
+                관리자 승인 후 새글쓰기가 이용가능합니다.
                 <br/><br/><img src={warning} alt="Logo" className={classes.logo} height="100px" width="100px"/>
             </p>
             
