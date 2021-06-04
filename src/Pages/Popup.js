@@ -52,15 +52,7 @@ export default function Example() {
                 해외에 다녀 오신 분이나 정보의 목적의 글을 작성하고자 하시는 분만 '정보게시판'에 글을 남겨주세요!
                 <br/><br/><img src={warning} alt="Logo" className={classes.logo} height="100px" width="100px"/>
             </p>
-            <Button
-            onClick={event =>  window.location.href=`write`}
-            className={classes.root}
-            variant="contained"
-            color="inherit"
-            endIcon={<CreateIcon />}
-          >
-            새글쓰기
-          </Button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            
           <Button
             onClick={onClick}
             className={classes.root}

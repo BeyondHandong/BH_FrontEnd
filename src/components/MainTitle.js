@@ -29,8 +29,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CheckboxLabels(props) {
   const classes = useStyles();
+  let auth = window.localStorage.getItem('authKey');
 
-  if (props.type == "info"){
+  console.log(auth)
+
+  if (props.type == "info" && auth == 0){
     return (
       <React.Fragment>
         <Container maxWidth="lg" className={classes.root}>
@@ -46,7 +49,7 @@ export default function CheckboxLabels(props) {
         </Container>
       </React.Fragment>
     );
-  } else {
+  }else if(props.type == "info" && auth > 0){
     return (
       <React.Fragment>
         <Container maxWidth="lg" className={classes.root}>
@@ -70,5 +73,29 @@ export default function CheckboxLabels(props) {
         </Container>
       </React.Fragment>
     );
+  } else {
+      return(
+        <React.Fragment>
+        <Container maxWidth="lg" className={classes.root}>
+            <Typography
+              component="span"
+              className={classes.pageTitle}
+              color="inherit"
+              gutterBottom
+            >
+              {props.title}
+            </Typography>
+            <Button
+              onClick={event =>  window.location.href=`write`}
+              className={classes.newButton}
+              variant="contained"
+              color="inherit"
+              endIcon={<CreateIcon />}
+            >
+              새글쓰기
+            </Button>
+        </Container>
+      </React.Fragment>
+      );
   }
 }
