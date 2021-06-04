@@ -99,6 +99,8 @@ export default function SignIn() {
         console.log(res.data.id);
         window.localStorage.setItem('user', res.data.id);
         window.localStorage.setItem('name', res.data.name);
+        window.localStorage.setItem('authKey', res.data.authKey);
+        // window.localStorage.getItem('authKey');
       }
     });
     await delay(2000);
