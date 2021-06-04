@@ -63,8 +63,8 @@ export default function SignUp() {
   const [open, setOpen] = React.useState(true);
   const handleClose = () => {
     setOpen(false);
-    window.location.href=`signup`;
     setState(0)
+    window.location.href=`signup`;
   };
   const handleToggle = () => {
     setOpen(!open);
