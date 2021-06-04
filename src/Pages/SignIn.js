@@ -14,6 +14,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import GoogleLogin from '../components/GoogleLogin'
 import * as api from '../api/post';
+import {useUserDispatch} from '../Context'
+import axios from 'axios';
 
 function Copyright() {
   return (
@@ -51,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
   const classes = useStyles();
 
-
   //아이디
   const [email, setId] = React.useState('');
   const handleEmail= (e) => {
@@ -70,15 +71,41 @@ export default function SignIn() {
   const delay = ms => new Promise(res => setTimeout(res, ms));
 
   //서버 전달 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     var data = new Object(); 
     data.email = email;
     data.password = pw;
     var jsonData = JSON.stringify(data);
-    api.signIn(jsonData, [jsonData]);
-    await delay(1000);
+
+    //server connection
+    const response = await axios.post(
+      '/user/signin', jsonData,
+    {headers: {
+      Authorization: ``,
+      'Content-Type': 'application/json'
+    }}
+    )
+    .catch(function (error) {
+      console.log("signUp error");
+      console.log(error)
+    }).then(res => { 
+      console.log(res.data);
+      //get user info 
+      if(res.data.id < 0){
+        window.location.href=`signin`;
+      }
+      else {
+        console.log(res.data.id);
+        window.localStorage.setItem('user', res.data.id);
+        window.localStorage.setItem('name', res.data.name);
+      }
+    });
+    await delay(2000);
+    window.location.href=`/`;
   };
 
+  
   return (
     <Container component="main" maxWidth="xs"> 
       <CssBaseline />
