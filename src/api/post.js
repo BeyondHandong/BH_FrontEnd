@@ -129,3 +129,12 @@ export async function Delete(id) {
   );
   return response.data;
 }
+
+
+//GET: helpful 
+export async function getHelpful(post_id) {
+  const response = await axios.get(
+    `post/helpful/${post_id}/${window.localStorage.getItem('user')}`
+  );
+  return response.data;
+}
