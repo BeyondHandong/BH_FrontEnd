@@ -181,7 +181,7 @@ export default function CustomizedTables(props) {
               </StyledTableCell>
               <StyledTableCell align="right">{row.writerName}</StyledTableCell>
               <StyledTableCell align="right">{row.writeDate}</StyledTableCell>
-              <StyledTableCell align="right">{row.scrapNum}{'  '}<VisibilityIcon /></StyledTableCell>
+              <StyledTableCell align="right">{row.viewNum}{'  '}<VisibilityIcon /></StyledTableCell>
               <StyledTableCell align="right">{row.helpfulNum}{'  '}<FavoriteIcon /></StyledTableCell>
             </StyledTableRow>
           ))}
