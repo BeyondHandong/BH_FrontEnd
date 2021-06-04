@@ -55,11 +55,12 @@ const useStyles = makeStyles({
   page: {
     padding: '2px 4px',
     
-    maxWidth: "600px",
+    maxWidth: "400px",
     maxHeight: "45px",
     minWidth: "100px",
     minHeight: "30px",
-    marginLeft: "280px",
+    marginLeft: "auto",
+    marginRight: "auto",
     align: "center",
     //borderRadius: 30,
     
