@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import * as api from '../api/post';
 import axios from 'axios';
@@ -49,12 +49,39 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#9AC1D9'
   },
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
   },
+  font: {
+    color: '#262626',
+
+  },
 }));
+
+const CssTextField = withStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: 'white',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 's#9AC1D9',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#262626',
+      },
+      '&:hover fieldset': {
+        borderColor: '#262626',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#9AC1D9',
+      },
+    },
+  },
+})(TextField);
 
 export default function SignUp() {
   const classes = useStyles();
@@ -131,10 +158,10 @@ export default function SignUp() {
     console.log(data);
     // response.data
     console.log(response.data);
-    if(response.data == 'The email is already existed!'){
+    if(response.data === 'The email is already existed!'){
       setState(1)
     }
-    else if(response.data == 'redirect:/')
+    else if(response.data === 'Sign up success')
       window.location.href=`signin`;
   };
   if (state == 0){
@@ -151,7 +178,7 @@ export default function SignUp() {
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <TextField
+                  <CssTextField
                     autoComplete="fname"
                     name="Name"
                     variant="outlined"
@@ -165,7 +192,7 @@ export default function SignUp() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
+                  <CssTextField
                     variant="outlined"
                     required
                     fullWidth
@@ -193,7 +220,7 @@ export default function SignUp() {
                   />
                 </Grid>*/}
                 <Grid item xs={12}>
-                  <TextField
+                  <CssTextField
                     variant="outlined"
                     required
                     fullWidth
@@ -206,7 +233,7 @@ export default function SignUp() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
+                  <CssTextField
                     variant="outlined"
                     required
                     fullWidth
@@ -233,7 +260,7 @@ export default function SignUp() {
               </Button>
               <Grid container justify="flex-end">
                 <Grid item>
-                  <Link href="signin" variant="body2">
+                  <Link className={classes.font} href="signin" variant="body2">
                     Already have an account? Sign in
                   </Link>
                 </Grid>

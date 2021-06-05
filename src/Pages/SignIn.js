@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import GoogleLogin from '../components/GoogleLogin'
 import * as api from '../api/post';
@@ -30,6 +30,27 @@ function Copyright() {
     </Typography>
   );
 }
+const CssTextField = withStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: 'white',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 's#9AC1D9',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#262626',
+      },
+      '&:hover fieldset': {
+        borderColor: '#262626',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#9AC1D9',
+      },
+    },
+  },
+})(TextField);
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -48,6 +69,11 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#9AC1D9'
+  },
+  font: {
+    color: '#262626',
+
   },
 }));
 
@@ -129,13 +155,13 @@ export default function SignIn() {
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
+            <LockOutlinedIcon/>
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
           <form className={classes.form} noValidate>
-            <TextField
+            <CssTextField
               variant="outlined"
               margin="normal"
               required
@@ -148,7 +174,7 @@ export default function SignIn() {
               value={email} 
               onChange={handleEmail}
             />
-            <TextField
+            <CssTextField
               variant="outlined"
               margin="normal"
               required
@@ -177,12 +203,12 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link className={classes.font} href="#" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/signup" variant="body2">
+                <Link className={classes.font}  href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
