@@ -194,7 +194,7 @@ export default function FormControlLabelPlacement() {
             // labelPlacement="bottom"
           />
           <FormControlLabel
-            value="워킹"
+            value="워홀"
             control={<CustomizedRadio color="primary" />}
             label="워킹홀리데이"
           />
@@ -311,7 +311,7 @@ export default function FormControlLabelPlacement() {
             // labelPlacement="bottom"
           />
           <FormControlLabel
-            value="워킹"
+            value="워홀"
             control={<CustomizedRadio color="primary" />}
             label="워킹홀리데이"
           />
