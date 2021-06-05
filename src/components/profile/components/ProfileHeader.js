@@ -21,7 +21,7 @@ export default function ProfileHeader() {
   const { loading, data: userData, error } = state;
   
   if (loading) return <div>로딩중..</div>;
-  if (error) return <div>로그인을 해주세요</div>;
+  if (error) return <div>로그인을 해주세요 <br /><br /><a href="signin"> 로그인</a></div>;
   if (!userData) return null;
 
   //delay

@@ -167,8 +167,8 @@ export default function CustomizedTables(props) {
             <StyledTableCell align="center">제목</StyledTableCell>
             <StyledTableCell align="right">작성자</StyledTableCell>
             <StyledTableCell align="center">날짜</StyledTableCell>
+            <StyledTableCell align="right">카테고리</StyledTableCell>
             <StyledTableCell align="right">조회수</StyledTableCell>
-            <StyledTableCell align="right">고마워요</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -184,8 +184,8 @@ export default function CustomizedTables(props) {
               </StyledTableCell>
               <StyledTableCell align="right">{row.writerName}</StyledTableCell>
               <StyledTableCell align="right">{row.writeDate}</StyledTableCell>
+              <StyledTableCell align="right">{row.category}{'  '}</StyledTableCell>
               <StyledTableCell align="right">{row.viewNum}{'  '}<VisibilityIcon /></StyledTableCell>
-              <StyledTableCell align="right">{row.helpfulNum}{'  '}<FavoriteIcon /></StyledTableCell>
             </StyledTableRow>
           ))}
           {emptyRows > 0 && (
