@@ -154,6 +154,13 @@ export default function CustomizedTables(props) {
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다</div>;
   if (!rows) return null;
+  if(!window.localStorage.getItem("user")){
+    window.localStorage.setItem("user", "");
+    window.localStorage.setItem("name", "");
+    console.log("실행");
+  }
+  console.log(window.localStorage.getItem("user"));
+  console.log(window.localStorage.getItem("name"));
 
   
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
