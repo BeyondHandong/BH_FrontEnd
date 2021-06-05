@@ -1,7 +1,6 @@
 import React from 'react';
 import OnlyTopBar from '../components/OnlyTopBar'
 import { Provider } from '../components/write/WriteContext';
-import TextArea from '../components/write/TextArea'
 import WriteTotal from '../components/write/WriteTotal'
 import {makeStyles } from "@material-ui/core/styles";
 

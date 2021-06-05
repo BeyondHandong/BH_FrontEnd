@@ -18,7 +18,7 @@ import MUIEditor, { MUIEditorState } from "react-mui-draft-wysiwyg";
 import * as api from '../../api/post';
 import { BrowserRouter as Router } from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
-import TextArea from './TextArea'
+
 
 const CustomizedRadio = withStyles({
   root: {
@@ -70,21 +70,21 @@ export default function FormControlLabelPlacement() {
   //제목
   const [text, setText] = React.useState('');
   const handleText = (e) => {
-    console.log(e.target.value);
+    
     setText(e.target.value);		//이벤트 발생한 value값으로 {text} 변경
   };
 
   //카테고리 
   const [value_category, setCategoryValue] = React.useState('');
   const handleCategoryRadioChange = (event) => {
-    console.log(event.target.value);
+    
     setCategoryValue(event.target.value);
     setError(false);
   };
   //게시판
   const [value_type, setTypeValue] = React.useState('');
   const handleTypeRadioChange = (event) => {
-    console.log(event.target.value);
+    
     setTypeValue(event.target.value);
     setError(false);
   };
@@ -122,7 +122,7 @@ export default function FormControlLabelPlacement() {
     data.sector = value_type;
     var jsonData = JSON.stringify(data);
     api.sendPost(jsonData, [jsonData]);
-    console.log(jsonData);
+    
     await delay(1000);
     window.location.href=`/`;
   };

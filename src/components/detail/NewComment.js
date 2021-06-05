@@ -7,7 +7,6 @@ import InputBase from "@material-ui/core/InputBase";
 import Button from "@material-ui/core/Button";
 import CreateIcon from "@material-ui/icons/Create";
 
-import useAsync from '../../api/useAsync';
 import * as api from '../../api/post';
 
 const useStyles = makeStyles(theme => ({
@@ -56,7 +55,7 @@ export default function SendComment(props) {
   const delay = ms => new Promise(res => setTimeout(res, ms));
   
   const handleClick = async () => {
-    console.log(props.id);
+    
     var data = new Object(); 
     data.postId = props.id; 
     data.content = value;
@@ -64,7 +63,7 @@ export default function SendComment(props) {
     data.writerName = window.localStorage.getItem("name");
     var jsonData = JSON.stringify(data);
     api.sendComment(jsonData, [jsonData]);
-    console.log(jsonData);
+    
     setValue('');
     await delay(1000);
     window.location.reload();

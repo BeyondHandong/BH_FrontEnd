@@ -10,12 +10,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import * as api from '../api/post';
 import axios from 'axios';
 import Backdrop from '@material-ui/core/Backdrop';
-
-
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -93,47 +89,42 @@ export default function SignUp() {
     setState(0)
     window.location.href=`signup`;
   };
-  const handleToggle = () => {
-    setOpen(!open);
-  };
 
   //이름
   const [name, setName] = React.useState('');
   const handleName= (e) => {
-    console.log(e.target.value);
+    
     setName(e.target.value);		//이벤트 발생한 value값으로 {text} 변경
   };
 
   //패스워드
   const [pw, setPw] = React.useState('');
   const handlePw = (e) => {
-    console.log(e.target.value);
+    
     setPw(e.target.value);		//이벤트 발생한 value값으로 {text} 변경
   };
 
   //패스워드
   const [cpw, setCPw] = React.useState('');
   const handleCPw = (e) => {
-    console.log(e.target.value);
+    
     setCPw(e.target.value);		//이벤트 발생한 value값으로 {text} 변경
   };
 
   //studentId
   const [studentId, setStudentId] = React.useState('');
   const handleStudentId= (e) => {
-    console.log(e.target.value);
+    
     setStudentId(e.target.value);		//이벤트 발생한 value값으로 {text} 변경
   };
 
   //이메일
   const [email, setEmail] = React.useState('');
   const handleEmail = (e) => {
-    console.log(e.target.value);
+    
     setEmail(e.target.value);		//이벤트 발생한 value값으로 {text} 변경
   };
 
-   //delay
-   const delay = ms => new Promise(res => setTimeout(res, ms));
 
   //서버 전달 
   const handleSubmit = async () => {
@@ -272,7 +263,7 @@ export default function SignUp() {
           </Box>
         </Container>
     );
-  }else{{/*>*/}
+  }else{
     return(
       <Container component="main" maxWidth="xs">
           <CssBaseline />

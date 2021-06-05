@@ -1,4 +1,4 @@
-import React, { useReducer, createContext, useContext, useRef } from 'react';
+import React, { useReducer, createContext, useContext } from 'react';
 
 const checkboxList = [
     {
@@ -45,7 +45,6 @@ function checkReducer(state, action) {
 function Search(state, action) {
   switch (action.type) {
     case 'NewKey':
-      console.log(action.input)
       return search = action.initiate
     case 'NotNewKey':
       return search = action.input
@@ -72,21 +71,6 @@ function User(state, action) {
   }
 }
 
-// function User(state, action) {
-//   switch (action.type) {
-//     case 'Login':
-//         userInfo.id = action.id;
-//         userInfo.name = action.name;
-//         userInfo.email = action.name;
-//         userInfo.student_id = action.student_id;
-//         userInfo.create_time = action.create_time;
-//         userInfo.authKey = action.authKey;
-//         console.log(userInfo);
-//       return userInfo = action.id
-//     default:
-//       return state
-//   }
-// }
 
 //check state
 const CheckStateContext = createContext();

@@ -6,7 +6,6 @@ import profilePicture from '../assets/profile.png';
 import './ProfileHeader.css';
 import useAsync from '../../../api/useAsync';
 import * as api from '../../../api/post';
-import {useUser} from '../../../Context'
 import ScrapTable from '../../ScrapTable'
 
 /* Renders the most important, "at a glance" information about the user.
@@ -16,7 +15,7 @@ import ScrapTable from '../../ScrapTable'
 
 export default function ProfileHeader() {
 
-  console.log(window.localStorage.getItem("user"));
+  
   const [state] = useAsync(() => api.getUserInfo(window.localStorage.getItem("user")), [window.localStorage.getItem("user")]);
   
   const { loading, data: userData, error } = state;

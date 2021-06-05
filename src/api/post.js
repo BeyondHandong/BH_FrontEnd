@@ -1,10 +1,9 @@
 import axios from 'axios';
-import Toast from './toast'
-import {useUser} from '../Context'
+
 
 //GET: 모든 게시글 목록 반환
 export async function getPosts(type, checks, search, country) {
-  console.log(`post/${type}${checks}${search}${country}`)
+  //.log(`post/${type}${checks}${search}${country}`)
   const response = await axios.get(
     `post/${type}${checks}${search}${country}`
   );
@@ -13,7 +12,7 @@ export async function getPosts(type, checks, search, country) {
 
 //GET: 특정 게시글 반환
 export async function getPost(id) {
-  console.log(`post/${id}`)
+  //console.log(`post/${id}`)
   const response = await axios.get(
     `post/${id}`
   );
@@ -22,11 +21,11 @@ export async function getPost(id) {
 
 //GET: 특정 게시글의 댓글 반환
 export async function getComments(id) {
-  console.log(`comment/${id}`)
+  //console.log(`comment/${id}`)
   const response = await axios.get(
     `comment/${id}`
   );
-  console.log(response.data)
+  //console.log(response.data)
   return response.data;
 }
 
@@ -62,9 +61,6 @@ export async function sendComment(data) {
   });
   console.log(data);
 }
-
-//delay
-const delay = ms => new Promise(res => setTimeout(res, ms));
 
 //Post: 회원가입 
 export async function signUp(data) {
@@ -114,7 +110,7 @@ export async function signIn(data) {
 
 //GET: 유저 정보 받기
 export async function getUserInfo(userId) {
-  console.log(`user/profile/${userId}`)
+  //console.log(`user/profile/${userId}`)
   const response = await axios.get(
     `user/profile/${userId}`
   );
@@ -123,7 +119,7 @@ export async function getUserInfo(userId) {
 
 //DELETE: 특정 게시글 삭제
 export async function Delete(id) {
-  console.log(`post/${id}`)
+  //console.log(`post/${id}`)
   const response = await axios.delete(
     `post/${id}`
   );
@@ -172,7 +168,7 @@ export async function Scrap(data) {
 
 //GET: 스크랩 목록 받기
 export async function getScrap(userId) {
-  console.log(`scrap/my/${userId}`)
+  //console.log(`scrap/my/${userId}`)
   const response = await axios.get(
     `scrap/my/${userId}`
   );
@@ -181,7 +177,7 @@ export async function getScrap(userId) {
 
 //DELETE: 스크랩 삭제
 export async function deleteScrap(data) {
-  console.log(data);
+  //console.log(data);
   const response = await axios.delete(
     `/scrap`,
     { data: data, headers: { Authorization: ``,

@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 });
 
 export default function Comment({ comment }) {
-  console.log(comment);
+  
 
   const classes = useStyles();
 

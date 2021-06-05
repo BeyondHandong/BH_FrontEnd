@@ -96,7 +96,7 @@ export default function Post(props) {
 
     //get Logged in userid
     let userid = window.localStorage.getItem('user');
-    console.log(userid)
+    
 
     //get post 
     const [state] = useAsync(() => api.getPost(props.id), [props.id]);
@@ -110,7 +110,7 @@ export default function Post(props) {
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
     if (!data) return null;
-    console.log(data);
+    
 
     //comment list info 
     if (loading_comment) return <div>로딩중..</div>;
@@ -140,13 +140,6 @@ export default function Post(props) {
         </div>
     );
 
-    let helpful = data.helpfulNum
-    console.log(data.id)
-
-    const Helpnum = (event) => {
-      helpful = helpful + 1
-      console.log(helpful)
-    };
 
     //delay
    const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -157,8 +150,7 @@ export default function Post(props) {
       window.location.href=`/`
     };
 
-    console.log(userid)
-    console.log(data.id)
+  
 
     const Scrap = async () => {
         var scrap = new Object(); 
@@ -168,7 +160,7 @@ export default function Post(props) {
         api.Scrap(jsonData);
       };
 
-    console.log(helpful)
+    
     if (userid == data.writerId){
       return (
         <Container className={classes.root}>

@@ -31,7 +31,6 @@ export default function CheckboxLabels(props) {
   const classes = useStyles();
   let auth = window.localStorage.getItem('authKey');
 
-  console.log(auth)
 
   if (props.type == "info" && auth == 0){
     return (
@@ -62,7 +61,7 @@ export default function CheckboxLabels(props) {
               {props.title}
             </Typography>
             <Button
-              onClick={event =>  window.localStorage.getItem("user") != "" ? window.location.href=`write` : window.location.href=`signin`}
+              onClick={event =>  window.localStorage.getItem("user") !== "" ? window.location.href=`write` : window.location.href=`signin`}
               className={classes.newButton}
               variant="contained"
               color="inherit"
@@ -86,7 +85,7 @@ export default function CheckboxLabels(props) {
               {props.title}
             </Typography>
             <Button
-              onClick={event =>  window.localStorage.getItem("user") != "" ? window.location.href=`write` : window.location.href=`signin`}
+              onClick={event =>  window.localStorage.getItem("user") !== "" ? window.location.href=`write` : window.location.href=`signin`}
               className={classes.newButton}
               variant="contained"
               color="inherit"

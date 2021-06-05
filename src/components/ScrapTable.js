@@ -13,38 +13,10 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
 import useAsync from '../api/useAsync';
 import * as api from '../api/post';
 import Button from "@material-ui/core/Button";
 
-function createData(name,carbs, protein) {
-  return { name, carbs, protein,};
-}
-
-
-
-/*const rows = [
-  createData('Cupcake', 67, 4.3),
-  createData('Donut', 51, 4.9),
-  createData('Eclair', 24, 6.0),
-  createData('Frozen yoghurt', 24, 4.0),
-  createData('Gingerbread', 49, 3.9),
-  createData('Honeycomb', 87, 6.5),
-  createData('Ice cream sandwich', 37, 4.3),
-  createData('Jelly Bean', 94, 0.0),
-  createData('KitKat', 65, 7.0),
-  createData('Lollipop', 98, 0.0),
-  createData('Marshmallow', 81, 2.0),
-  createData('Nougat', 9, 37.0),
-  createData('Oreo', 63, 4.0),
-];*/
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -82,7 +54,7 @@ const headCells = [
 ];
 
 function EnhancedTableHead(props) {
-  const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  const { classes, order, orderBy, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -214,13 +186,13 @@ export default function EnhancedTable() {
   const { loading, data: rows, error } = state;
 
   let userid = parseInt(window.localStorage.getItem("user")) 
-  console.log(userid)
+  
   
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다</div>;
   if (!rows) return null;
 
-  console.log(rows)
+  
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -239,9 +211,6 @@ export default function EnhancedTable() {
     setPage(0);
   };
 
-  const handleChangeDense = (event) => {
-    setDense(event.target.checked);
-  };
 
   const delay = ms => new Promise(res => setTimeout(res, ms));
 
@@ -251,7 +220,6 @@ export default function EnhancedTable() {
     scrap.postId = value;
     var jsonData = JSON.stringify(scrap);
     api.deleteScrap(jsonData);
-    //console.log(jsonData)
     await delay(500)
     window.location.href=`profile`
   };

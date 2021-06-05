@@ -27,7 +27,7 @@ export default function Detail(props) {
     const search = props.location.search; // returns the URL query String
     const params = new URLSearchParams(search); 
     const IdFromURL = params.get('id'); 
-    console.log(IdFromURL);
+    
 
     return (
       <Parallax className={classes.parallax} blur={0} bgImage="https://static.wixstatic.com/media/11062b_7d8badf22ed9415e8c2974ee130d4943~mv2.jpg" bgImageAlt="santorini" strength={200}>

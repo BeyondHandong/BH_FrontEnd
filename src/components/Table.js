@@ -8,7 +8,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {FormatBold } from '@material-ui/icons';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import useAsync from '../api/useAsync';
@@ -76,7 +75,7 @@ export default function CustomizedTables(props) {
   const checks1 = useSearch();
   const checks2 = useCountry();
   const userInfo = useUser();
-  console.log(userInfo);
+  
   
   let init_search = ""
   let country_state = "&countries="
@@ -183,7 +182,7 @@ export default function CustomizedTables(props) {
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((row) => (
             <StyledTableRow 
-              onClick={event => window.localStorage.getItem("user") != "" ? window.location.href=`detail?id=${row.id}` : window.location.href=`signin`}
+              onClick={event => window.localStorage.getItem("user") !== "" ? window.location.href=`detail?id=${row.id}` : window.location.href=`signin`}
               key={row.id}>
               <StyledTableCell align="right">{row.type}</StyledTableCell>
               <StyledTableCell align="center" component="th" scope="row">

@@ -3,8 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -13,8 +11,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import GoogleLogin from '../components/GoogleLogin'
-import * as api from '../api/post';
-import {useUserDispatch} from '../Context'
 import axios from 'axios';
 import Backdrop from '@material-ui/core/Backdrop';
 
@@ -88,21 +84,17 @@ export default function SignIn() {
     setOpen(false);
   };
 
-  const handleToggle = () => {
-    setOpen(!open);
-  };
-
   //아이디
   const [email, setId] = React.useState('');
   const handleEmail= (e) => {
-    console.log(e.target.value);
+    
     setId(e.target.value);		//이벤트 발생한 value값으로 {text} 변경
   };
 
   //패스워드
   const [pw, setPw] = React.useState('');
   const handlePw = (e) => {
-    console.log(e.target.value);
+    
     setPw(e.target.value);		//이벤트 발생한 value값으로 {text} 변경
   };
 
@@ -116,7 +108,6 @@ export default function SignIn() {
     data.email = email;
     data.password = pw;
     var jsonData = JSON.stringify(data);
-
     //server connection
     const response = await axios.post(
       '/user/signin', jsonData,

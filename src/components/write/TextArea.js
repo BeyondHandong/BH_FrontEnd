@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import DraftToHtml from "draftjs-to-html";
