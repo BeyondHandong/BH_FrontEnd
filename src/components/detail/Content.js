@@ -118,7 +118,6 @@ export default function Post(props) {
     if (!data_comment) return null;
     console.log(data_comment.length);
 
-    console.log(data.id)
     
     const date = (
         <span className={classes.postDateBlock}>
@@ -157,6 +156,17 @@ export default function Post(props) {
       await delay(1000)
       window.location.href=`/`
     };
+
+    console.log(userid)
+    console.log(data.id)
+
+    const Scrap = async () => {
+        var scrap = new Object(); 
+        scrap.writerId = userid;
+        scrap.postId = data.id;
+        var jsonData = JSON.stringify(scrap);
+        api.Scrap(jsonData);
+      };
 
     console.log(helpful)
     if (userid == data.writerId){
@@ -208,20 +218,13 @@ export default function Post(props) {
                     댓글수 : {data_comment.length}
                 </Typography>
             </Grid>
-            <Grid justify='evenly' item xs={3}>
+            <Grid justify='evenly' item xs={2}>
                 <CardActions disableSpacing>
                     <Button
                         className={classes.button}
                         variant="contained"
                         color="inherit"
-                        onClick={Helpnum} 
-                        >
-                        고마워요
-                    </Button>
-                    <Button
-                        className={classes.button}
-                        variant="contained"
-                        color="inherit"
+                        onClick={Scrap} 
                         >
                         스크랩
                     </Button>
@@ -298,20 +301,13 @@ export default function Post(props) {
                     댓글수 : {data_comment.length}
                 </Typography>
             </Grid>
-            <Grid justify='evenly' item xs={2}>
+            <Grid justify='evenly' item xs={1}>
                 <CardActions disableSpacing>
                     <Button
                         className={classes.button}
                         variant="contained"
                         color="inherit"
-                        onClick={Helpnum} 
-                        >
-                        고마워요
-                    </Button>
-                    <Button
-                        className={classes.button}
-                        variant="contained"
-                        color="inherit"
+                        onClick={Scrap} 
                         >
                         스크랩
                     </Button>

@@ -154,3 +154,42 @@ export async function helpful(data) {
     });
   return response.data;
 }
+
+//POST: 게시물 스크랩하기
+export async function Scrap(data) {
+  const response = await axios.post(
+    '/scrap', data,
+  {headers: {
+    Authorization: ``,
+    'Content-Type': 'application/json'
+  }}
+  ).catch(function (error) {
+    console.log("send comment error");
+    console.log(error)
+  });
+  console.log(data);
+}
+
+//GET: 스크랩 목록 받기
+export async function getScrap(userId) {
+  console.log(`scrap/my/${userId}`)
+  const response = await axios.get(
+    `scrap/my/${userId}`
+  );
+  return response.data;
+}
+
+//DELETE: 스크랩 삭제
+export async function deleteScrap(data) {
+  console.log(data);
+  const response = await axios.delete(
+    `/scrap`,
+    { data: data, headers: { Authorization: ``,
+    'Content-Type': 'application/json' } })
+    .catch(function (error) {
+      console.log("signUp error");
+      console.log(error)
+    });
+  return response.data;
+}
+

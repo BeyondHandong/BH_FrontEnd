@@ -7,6 +7,7 @@ import './ProfileHeader.css';
 import useAsync from '../../../api/useAsync';
 import * as api from '../../../api/post';
 import {useUser} from '../../../Context'
+import ScrapTable from '../../ScrapTable'
 
 /* Renders the most important, "at a glance" information about the user.
  * Styled to be attention grabbing for the viewer
@@ -57,6 +58,8 @@ export default function ProfileHeader() {
             로그아웃
           </a>
         </div>
+        <br /><br />
+        <ScrapTable></ScrapTable>
       </div>
     );
   }
