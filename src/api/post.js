@@ -138,3 +138,19 @@ export async function getHelpful(post_id) {
   );
   return response.data;
 }
+
+//PUT: helpful 
+export async function helpful(data) {
+  const response = await axios.put(
+    `/post/helpful`, data,
+    {headers: {
+      Authorization: ``,
+      'Content-Type': 'application/json'
+    }}
+    )
+    .catch(function (error) {
+      console.log("signUp error");
+      console.log(error)
+    });
+  return response.data;
+}
