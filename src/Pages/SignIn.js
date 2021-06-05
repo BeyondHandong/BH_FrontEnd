@@ -187,10 +187,7 @@ export default function SignIn() {
               value={pw} 
               onChange={handlePw}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+            
             <Button
               type="submit"
               fullWidth
@@ -203,9 +200,7 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link className={classes.font} href="#" variant="body2">
-                  Forgot password?
-                </Link>
+                
               </Grid>
               <Grid item>
                 <Link className={classes.font}  href="/signup" variant="body2">
@@ -260,10 +255,7 @@ export default function SignIn() {
               value={pw} 
               onChange={handlePw}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+            
             <Button
               type="submit"
               fullWidth
@@ -276,9 +268,7 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
+                
               </Grid>
               <Grid item>
                 <Link href="/signup" variant="body2">
