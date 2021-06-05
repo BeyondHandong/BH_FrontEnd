@@ -44,6 +44,7 @@ export default function ProfileHeader() {
         <div className='profile-links'>
           🖥&nbsp;
           <a
+            href='https://hisnet.handong.edu/'
             target='_blank'
             rel='noopener noreferrer'
           >
