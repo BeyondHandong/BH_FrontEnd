@@ -63,6 +63,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function FormControlLabelPlacement() {
   const classes = useStyles();
+  //auth key
+  let auth = window.localStorage.getItem('authKey');
+
   const [error, setError] = React.useState(false);
   //제목
   const [text, setText] = React.useState('');
@@ -124,120 +127,234 @@ export default function FormControlLabelPlacement() {
     window.location.href=`/`;
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <TextField
-          id="outlined-full-width"
-          style={{ margin: 8 }}
-          placeholder="제목을 입력하세요"
-          margin="normal"
-          onChange={handleText}
-          value={text}  
-          fullWidth
-          variant="outlined"
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
+  if (auth == 0){
+    return (
+      <form onSubmit={handleSubmit}>
+        <TextField
+            id="outlined-full-width"
+            style={{ margin: 8 }}
+            placeholder="제목을 입력하세요"
+            margin="normal"
+            onChange={handleText}
+            value={text}  
+            fullWidth
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
 
-      <div> 
-        <MUIEditor 
-            editorState={editorState} 
-            onChange={onChange}
-            /> 
-      </div>
-  
-      <FormLabel component="legend">게시판 타입 선택</FormLabel>
-      <RadioGroup
-        row
-        aria-label="position"
-        name="position"
-        defaultValue="top"
-        onChange={handleTypeRadioChange}
-      >
-        <FormControlLabel
-          value="정보"
-          control={<CustomizedRadio color="primary" />}
-          label="정보게시판"
-        />
-        <FormControlLabel
-          value="자유"
-          control={<CustomizedRadio color="primary" />}
-          label="자유게시판"
-          // labelPlacement="start"
-        />
-      </RadioGroup>
-      
-      <br />
-      <FormLabel component="legend">게시판 카테고리 선택</FormLabel>
-      <RadioGroup
-        row
-        aria-label="position"
-        name="position"
-        defaultValue="top"
-        onChange={handleCategoryRadioChange}
-      >
-        <FormControlLabel
-          value="교환"
-          control={<CustomizedRadio color="primary" />}
-          label="교환학생"
-        />
-        <FormControlLabel
-          value="대학원"
-          control={<CustomizedRadio color="primary" />}
-          label="해외대학원"
-          // labelPlacement="start"
-        />
-        <FormControlLabel
-          value="취업"
-          control={<CustomizedRadio color="primary" />}
-          label="해외취업"
-          // labelPlacement="bottom"
-        />
-        <FormControlLabel
-          value="워킹"
-          control={<CustomizedRadio color="primary" />}
-          label="워킹홀리데이"
-        />
-      </RadioGroup>
-      <br />
-      <FormLabel component="legend">나라선택</FormLabel>
-      <FormControl variant="outlined" required  className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">나라</InputLabel>
-        <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
-          value={country}
-          onChange={handleChange}
-          label="country"
+        <div> 
+          <MUIEditor 
+              editorState={editorState} 
+              onChange={onChange}
+              /> 
+        </div>
+    
+        <FormLabel component="legend">게시판 타입 선택</FormLabel>
+        <RadioGroup
+          row
+          aria-label="position"
+          name="position"
+          defaultValue="top"
+          onChange={handleTypeRadioChange}
         >
-          <MenuItem value="">
-            <em>나라</em>
-          </MenuItem>
-          <MenuItem value={"미국"}>미국</MenuItem>
-          <MenuItem value={"캐나다"}>캐나다</MenuItem>
-          <MenuItem value={"영국"}>영국</MenuItem>
-          <MenuItem value={"폴란드"}>폴란드</MenuItem>
-          <MenuItem value={"일본"}>일본</MenuItem>
-          <MenuItem value={"싱가포르"}>싱가포르</MenuItem>
-          <MenuItem value={"호주"}>호주</MenuItem>
-          <MenuItem value={"뉴질랜드"}>뉴질랜드</MenuItem>
-          <MenuItem value={"기타"}>기타</MenuItem>
-        </Select>
-      </FormControl>
-      <Router>
-        <Button
-              className={classes.newButton}
-              variant="contained"
-              color="inherit"
-              endIcon={<CreateIcon />}
-              onClick={handleSubmit}
-              // onClick={event =>  window.location.href=`/`}
-              onSubmit={handleSubmit}
-            >
-              등록하기
-        </Button>
-      </Router>
-    </form >
-  );
+          <FormControlLabel
+            value="자유"
+            control={<CustomizedRadio color="primary" />}
+            label="자유게시판"
+            // labelPlacement="start"
+          />
+        </RadioGroup>
+        
+        <br />
+        <FormLabel component="legend">게시판 카테고리 선택</FormLabel>
+        <RadioGroup
+          row
+          aria-label="position"
+          name="position"
+          defaultValue="top"
+          onChange={handleCategoryRadioChange}
+        >
+          <FormControlLabel
+            value="교환"
+            control={<CustomizedRadio color="primary" />}
+            label="교환학생"
+          />
+          <FormControlLabel
+            value="대학원"
+            control={<CustomizedRadio color="primary" />}
+            label="해외대학원"
+            // labelPlacement="start"
+          />
+          <FormControlLabel
+            value="취업"
+            control={<CustomizedRadio color="primary" />}
+            label="해외취업"
+            // labelPlacement="bottom"
+          />
+          <FormControlLabel
+            value="워킹"
+            control={<CustomizedRadio color="primary" />}
+            label="워킹홀리데이"
+          />
+        </RadioGroup>
+        <br />
+        <FormLabel component="legend">나라선택</FormLabel>
+        <FormControl variant="outlined" required  className={classes.formControl}>
+          <InputLabel id="demo-simple-select-outlined-label">나라</InputLabel>
+          <Select
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
+            value={country}
+            onChange={handleChange}
+            label="country"
+          >
+            <MenuItem value="">
+              <em>나라</em>
+            </MenuItem>
+            <MenuItem value={"미국"}>미국</MenuItem>
+            <MenuItem value={"캐나다"}>캐나다</MenuItem>
+            <MenuItem value={"영국"}>영국</MenuItem>
+            <MenuItem value={"폴란드"}>폴란드</MenuItem>
+            <MenuItem value={"일본"}>일본</MenuItem>
+            <MenuItem value={"싱가포르"}>싱가포르</MenuItem>
+            <MenuItem value={"호주"}>호주</MenuItem>
+            <MenuItem value={"뉴질랜드"}>뉴질랜드</MenuItem>
+            <MenuItem value={"기타"}>기타</MenuItem>
+          </Select>
+        </FormControl>
+        <Router>
+          <Button
+                className={classes.newButton}
+                variant="contained"
+                color="inherit"
+                endIcon={<CreateIcon />}
+                onClick={handleSubmit}
+                // onClick={event =>  window.location.href=`/`}
+                onSubmit={handleSubmit}
+              >
+                등록하기
+          </Button>
+        </Router>
+      </form >
+    );
+  }else {
+    return(
+      <form onSubmit={handleSubmit}>
+        <TextField
+            id="outlined-full-width"
+            style={{ margin: 8 }}
+            placeholder="제목을 입력하세요"
+            margin="normal"
+            onChange={handleText}
+            value={text}  
+            fullWidth
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+
+        <div> 
+          <MUIEditor 
+              editorState={editorState} 
+              onChange={onChange}
+              /> 
+        </div>
+    
+        <FormLabel component="legend">게시판 타입 선택</FormLabel>
+        <RadioGroup
+          row
+          aria-label="position"
+          name="position"
+          defaultValue="top"
+          onChange={handleTypeRadioChange}
+        >
+          <FormControlLabel
+            value="정보"
+            control={<CustomizedRadio color="primary" />}
+            label="정보게시판"
+          />
+          <FormControlLabel
+            value="자유"
+            control={<CustomizedRadio color="primary" />}
+            label="자유게시판"
+            // labelPlacement="start"
+          />
+        </RadioGroup>
+        
+        <br />
+        <FormLabel component="legend">게시판 카테고리 선택</FormLabel>
+        <RadioGroup
+          row
+          aria-label="position"
+          name="position"
+          defaultValue="top"
+          onChange={handleCategoryRadioChange}
+        >
+          <FormControlLabel
+            value="교환"
+            control={<CustomizedRadio color="primary" />}
+            label="교환학생"
+          />
+          <FormControlLabel
+            value="대학원"
+            control={<CustomizedRadio color="primary" />}
+            label="해외대학원"
+            // labelPlacement="start"
+          />
+          <FormControlLabel
+            value="취업"
+            control={<CustomizedRadio color="primary" />}
+            label="해외취업"
+            // labelPlacement="bottom"
+          />
+          <FormControlLabel
+            value="워킹"
+            control={<CustomizedRadio color="primary" />}
+            label="워킹홀리데이"
+          />
+        </RadioGroup>
+        <br />
+        <FormLabel component="legend">나라선택</FormLabel>
+        <FormControl variant="outlined" required  className={classes.formControl}>
+          <InputLabel id="demo-simple-select-outlined-label">나라</InputLabel>
+          <Select
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
+            value={country}
+            onChange={handleChange}
+            label="country"
+          >
+            <MenuItem value="">
+              <em>나라</em>
+            </MenuItem>
+            <MenuItem value={"미국"}>미국</MenuItem>
+            <MenuItem value={"캐나다"}>캐나다</MenuItem>
+            <MenuItem value={"영국"}>영국</MenuItem>
+            <MenuItem value={"폴란드"}>폴란드</MenuItem>
+            <MenuItem value={"일본"}>일본</MenuItem>
+            <MenuItem value={"싱가포르"}>싱가포르</MenuItem>
+            <MenuItem value={"호주"}>호주</MenuItem>
+            <MenuItem value={"뉴질랜드"}>뉴질랜드</MenuItem>
+            <MenuItem value={"기타"}>기타</MenuItem>
+          </Select>
+        </FormControl>
+        <Router>
+          <Button
+                className={classes.newButton}
+                variant="contained"
+                color="inherit"
+                endIcon={<CreateIcon />}
+                onClick={handleSubmit}
+                // onClick={event =>  window.location.href=`/`}
+                onSubmit={handleSubmit}
+              >
+                등록하기
+          </Button>
+        </Router>
+      </form >
+    );
+  }
 }
