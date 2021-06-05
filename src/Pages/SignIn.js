@@ -224,7 +224,6 @@ export default function SignIn() {
   }else{
     return(
       <Container component="main" maxWidth="xs"> 
-      <Backdrop className={classes.backdrop} open={open} onClick={Close}><h1><br />Wrong ID or PW!</h1></Backdrop>
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
@@ -233,6 +232,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          <Backdrop className={classes.backdrop} open={open} onClick={Close}><h1><br /><br />Wrong ID or PW!</h1></Backdrop>
           <form className={classes.form} noValidate>
             <TextField
               variant="outlined"
