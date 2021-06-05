@@ -62,7 +62,7 @@ export default function CheckboxLabels(props) {
               {props.title}
             </Typography>
             <Button
-              onClick={event =>  window.location.href=`write`}
+              onClick={event =>  window.localStorage.getItem("user") != "" ? window.location.href=`write` : window.location.href=`signin`}
               className={classes.newButton}
               variant="contained"
               color="inherit"
@@ -86,7 +86,7 @@ export default function CheckboxLabels(props) {
               {props.title}
             </Typography>
             <Button
-              onClick={event =>  window.location.href=`write`}
+              onClick={event =>  window.localStorage.getItem("user") != "" ? window.location.href=`write` : window.location.href=`signin`}
               className={classes.newButton}
               variant="contained"
               color="inherit"
